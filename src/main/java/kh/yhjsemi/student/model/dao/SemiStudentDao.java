@@ -22,13 +22,14 @@ public class SemiStudentDao {
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe","kh","kh");
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
+			System.out.println(rs);
 			result = new ArrayList<SemiStudentVo>();
-			while(rs.next()) {
+			while(rs.next()==true) {
 				SemiStudentVo vo = new SemiStudentVo();
-				vo.setStudentName(rs.getString("student_name"));
-				vo.setGrade(rs.getString("학년"));
 				vo.setStudentNo(rs.getString("student_no"));
-				vo.setParentNumber(rs.getString("부모전화번호"));
+				vo.setStudentName(rs.getString("student_name"));
+				vo.setAge(rs.getInt("AGE"));
+				vo.setParentNumber(rs.getString("PHONE"));
 				result.add(vo);
 				
 				
@@ -36,34 +37,21 @@ public class SemiStudentDao {
 			}
 			
 			
-		} catch (ClassNotFoundException e) {
+	
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(pstmt!=null) {pstmt.close();}
+				if (conn != null) {conn.close();}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+//		System.out.println(result);
 		return result;
 	}
 }

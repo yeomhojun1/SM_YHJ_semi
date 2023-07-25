@@ -33,6 +33,7 @@ public class SemiStudentListController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SemiStudentDao dao= new SemiStudentDao();
 		List<SemiStudentVo> result = null;
+		result = dao.selectListStudent();
 		request.setAttribute("smlist", result);
 		request.getRequestDispatcher("/WEB-INF/view/sm/list.jsp").forward(request, response);
 			
