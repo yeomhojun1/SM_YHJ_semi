@@ -12,6 +12,7 @@
 <%
 List<SemiStudentVo> volist= (List<SemiStudentVo>) request.getAttribute("smlist");
 %>
+<h2>담당 학생 리스트</h2>
 <table border="1">
 		<tr>
 			<td>학생번호</td>
@@ -26,7 +27,9 @@ List<SemiStudentVo> volist= (List<SemiStudentVo>) request.getAttribute("smlist")
 		%>
 		<tr>
 			
-			<td><%=vo.getStudentNo()%></td>
+			<td><a
+				href="<%=request.getContextPath()%>/sm/get?sno=<%=vo.getStudentNo()%>">
+					<%=vo.getStudentNo()%></a></td>
 			<td><%=vo.getStudentName()%></td>
 			<td><%=vo.getAge()%></td>
 			<td><%=vo.getParentNumber()%></td>
