@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kh.yhjsemi.student.model.dao.SemiStudentDao;
 import kh.yhjsemi.student.model.vo.SemiStudentVo;
+import kh.yhjsemi.student.service.SemiStudentService;
 
 /**
  * Servlet implementation class SemiStudentListController
@@ -31,9 +32,9 @@ public class SemiStudentListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		SemiStudentDao dao= new SemiStudentDao();
-		List<SemiStudentVo> result = null;
-		result = dao.selectListStudent();
+		
+		SemiStudentService service = new SemiStudentService();
+		List<SemiStudentVo> result = service.selectListStudent();
 		request.setAttribute("smlist", result);
 		request.getRequestDispatcher("/WEB-INF/view/sm/list.jsp").forward(request, response);
 			

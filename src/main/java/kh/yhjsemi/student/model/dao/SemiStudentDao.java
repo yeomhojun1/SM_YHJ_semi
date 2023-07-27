@@ -11,15 +11,14 @@ import java.util.List;
 import kh.yhjsemi.student.model.vo.SemiStudentVo;
 
 public class SemiStudentDao {
-	public List<SemiStudentVo> selectListStudent(){
+	public List<SemiStudentVo> selectListStudent(Connection conn){
 		List<SemiStudentVo> result =null;
-		String sql = "SELECT * FROM SMY";
-		Connection conn = null;
+		String sql = "SELECT STUDENT_NO,STUDENT_NAME,  EXTRACT(YEAR FROM SYSDATE)- (SUBSTR(STUDENT_SSN,1,2)+2000) AGE,PHONE FROM SMY";
+		
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe","kh","kh");
+			
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			System.out.println(rs);
@@ -45,7 +44,6 @@ public class SemiStudentDao {
 			try {
 				if(rs!=null) {rs.close();}
 				if(pstmt!=null) {pstmt.close();}
-				if (conn != null) {conn.close();}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
