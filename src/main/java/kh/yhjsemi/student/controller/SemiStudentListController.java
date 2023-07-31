@@ -16,7 +16,7 @@ import kh.yhjsemi.student.service.SemiStudentService;
 /**
  * Servlet implementation class SemiStudentListController
  */
-@WebServlet("/sm/list")
+@WebServlet("/sm/student/list")
 public class SemiStudentListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -35,10 +35,11 @@ public class SemiStudentListController extends HttpServlet {
 		
 		SemiStudentService service = new SemiStudentService();
 		List<SemiStudentVo> result = service.selectListStudent();
-		request.setAttribute("smlist", result);
-		request.getRequestDispatcher("/WEB-INF/view/sm/list.jsp").forward(request, response);
+		System.out.println(result);
+		request.setAttribute("semistudentlist", result);
+		request.getRequestDispatcher("/WEB-INF/view/semistudent/student.jsp").forward(request, response);
 			
-		
+		System.out.println("서블릿 돌아감");
 		
 		
 		

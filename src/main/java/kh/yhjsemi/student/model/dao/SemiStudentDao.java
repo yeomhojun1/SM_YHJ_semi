@@ -4,52 +4,45 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import static kh.yhjsemi.common.jdbc.JdbcTemplate.*;
 
 import kh.yhjsemi.student.model.vo.SemiStudentVo;
 
 public class SemiStudentDao {
 	public List<SemiStudentVo> selectListStudent(Connection conn){
 		List<SemiStudentVo> result =null;
-		String sql = "SELECT STUDENT_NO,STUDENT_NAME,  EXTRACT(YEAR FROM SYSDATE)- (SUBSTR(STUDENT_SSN,1,2)+2000) AGE,PHONE FROM SMY";
+		String sql = "SELECT * FROM ACA_STUDENT";
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
+		
 		try {
-			
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			System.out.println(rs);
-			result = new ArrayList<SemiStudentVo>();
-			while(rs.next()==true) {
+		
+			if(rs.next() ) {
+				result = new ArrayList<SemiStudentVo>();
+				do {
 				SemiStudentVo vo = new SemiStudentVo();
-				vo.setStudentNo(rs.getString("student_no"));
-				vo.setStudentName(rs.getString("student_name"));
-				vo.setAge(rs.getInt("AGE"));
-				vo.setParentNumber(rs.getString("PHONE"));
+				vo.setMid2(rs.getString("MID2"));
+				vo.setStudentName(rs.getString("student_NAME"));
+				vo.setExamScore(rs.getInt("EXAM_sCORE"));
+				vo.setBirthday(rs.getDate("BIRTHDAY"));
+				vo.setEnterDate(rs.getDate("ENter_date"));
+				vo.setImportant(rs.getString("important"));
+				vo.setMid(rs.getString("mid"));
+				vo.setTele(rs.getString("tele"));
 				result.add(vo);
-				
-				
-				
+			}while(rs.next() == true);
 			}
-			
-			
-	
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			try {
-				if(rs!=null) {rs.close();}
-				if(pstmt!=null) {pstmt.close();}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			close(rs);
+			close(pstmt);
 		}
-//		System.out.println(result);
 		return result;
 	}
 }

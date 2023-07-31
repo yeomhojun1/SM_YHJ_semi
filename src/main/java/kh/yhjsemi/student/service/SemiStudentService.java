@@ -13,7 +13,7 @@ public class SemiStudentService {
 	private SemiStudentDao dao = new SemiStudentDao();
 
 	public List<SemiStudentVo> selectListStudent() {
-		Connection conn = getConnection();
+		Connection conn = JdbcTemplate.getConnection();
 		List<SemiStudentVo> result = dao.selectListStudent(conn);
 		close(conn);
 		return result;

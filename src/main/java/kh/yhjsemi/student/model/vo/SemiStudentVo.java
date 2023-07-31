@@ -1,39 +1,74 @@
 package kh.yhjsemi.student.model.vo;
 
+import java.sql.Date;
+
 public class SemiStudentVo {
-	private String studentNo;
+	private String mid2;
 	private String studentName;
-	private int age;
-	private String parentNumber;
+	private int examScore;
+	private Date birthday;
+	private Date enterDate;
+	private String important;
+	private String mid;
+	private String tele;
+
+	
 	@Override
 	public String toString() {
-		return "SemiStudentVo [studentNo=" + studentNo + ", studentName=" + studentName + ", age=" + age
-				+ ", parentNumber=" + parentNumber + "]";
+		return "SemiStudentVo [mid2=" + mid2 + ", studentName=" + studentName + ", examScore=" + examScore
+				+ ", birthday=" + birthday + ", enterDate=" + enterDate + ", important=" + important + ", mid=" + mid
+				+ ", tele=" + tele + "]";
 	}
-	public String getStudentNo() {
-		return studentNo;
+	public String getMid2() {
+		return mid2;
 	}
-	public void setStudentNo(String studentNo) {
-		this.studentNo = studentNo;
+	public void setMid2(String mid2) {
+		this.mid2 = mid2;
 	}
+	
 	public String getStudentName() {
 		return studentName;
 	}
 	public void setStudentName(String studentName) {
 		this.studentName = studentName;
 	}
-	public int getAge() {
-		return age;
+	public int getExamScore() {
+		return examScore;
 	}
-	public void setAge(int age) {
-		this.age = age;
+	public void setExamScore(int examScore) {
+		this.examScore = examScore;
 	}
-	public String getParentNumber() {
-		return parentNumber;
+	public Date getBirthday() {
+		return birthday;
 	}
-	public void setParentNumber(String parentNumber) {
-		this.parentNumber = parentNumber;
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
+	public Date getEnterDate() {
+		return enterDate;
+	}
+	public void setEnterDate(Date enterDate) {
+		this.enterDate = enterDate;
+	}
+	public String getImportant() {
+		return important;
+	}
+	public void setImportant(String important) {
+		this.important = important;
+	}
+	public String getMid() {
+		return mid;
+	}
+	public void setMid(String mid) {
+		this.mid = mid;
+	}
+	public String getTele() {
+		return tele;
+	}
+	public void setTele(String tele) {
+		this.tele = tele;
+	}
+	
 	
 	
 
