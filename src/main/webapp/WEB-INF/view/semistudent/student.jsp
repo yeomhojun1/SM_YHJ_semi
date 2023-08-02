@@ -2,6 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +15,21 @@
   List<SemiStudentVo> tc= (List<SemiStudentVo>)request.getAttribute("semistudentlist");
 %>
 <h2>학생 리스트</h2>
+<div>
+<form action="#" method="get">
+	<input type="search" name="searchword" placeholder="검색">
+	<botton type="submit" value="찾기">
+
+</form>
+</div>
+<c:if test="${not empty searchword }">
+	<h3>${searchword } 검색결과</h3>
+	<h5>
+	<a href="<%= request.getContextPath() %>/sm/student/list">전체보기</a>
+	</h5>
+</c:if>
+
+
 <table border="1">
 		<tr>
 			<td>학생 아이디</td>
@@ -26,22 +42,24 @@
 			<td>학생 전화번호</td>
 		</tr>
 	
-		<%
-		for (int i =0 ; i<tc.size();i++){
-			SemiStudentVo vo = tc.get(i);
-		%>
+		<c:forEach items="${ semistudentlist }" var="item">
 		<tr>
 			
-			<td><%=vo.getMid2() %></td>
-			<td><%=vo.getStudentName() %></td>
-			<td><%=vo.getExamScore() %></td>
-			<td><%=vo.getBirthday() %></td>
-			<td><%=vo.getEnterDate() %></td>
-			<td><%=vo.getImportant() %></td>
-			<td><%=vo.getTele() %></td>
+			<td><a
+					href="<%=request.getContextPath()%>/sm/student/get?mid2=${item.mid2 }">${item.mid2 }</a></td>
+			<td><a
+					href="<%=request.getContextPath()%>/sm/student/get?mid2=${item.mid2 }">${item.studentName }</a></td>
+			<td>${item.examScore }</td>
+			<td>${item.birthday }</td>
+			<td>${item.enterDate }</td>
+			<td>${item.important }</td>
+			<td>${item.important }</td>
+			<td>${item.mid }</td>
+			<td>${item.tele }</td>
+			
 
 		</tr>
-		<%} %>
+		</c:forEach>
 		</table>
 </body>
 </html>

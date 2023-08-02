@@ -3,7 +3,7 @@ package kh.yhjsemi.week.model.vo;
 import java.sql.Date;
 
 public class SemiWeekVo {
-		private Date yymmdd;
+		private int monthNo;
 		private String tcid;
 		private String stid;
 		private String expect;
@@ -11,17 +11,35 @@ public class SemiWeekVo {
 		private String stComment;
 		private String acheive;
 		private int weekScore;
+		private String studentName;
 		@Override
 		public String toString() {
-			return "SemiWeekVo [yymmdd=" + yymmdd + ", tcid=" + tcid + ", stid=" + stid + ", expect=" + expect
+			return "SemiWeekVo [monthNo=" + monthNo + ", tcid=" + tcid + ", stid=" + stid + ", expect=" + expect
 					+ ", study=" + study + ", stComment=" + stComment + ", acheive=" + acheive + ", weekScore="
-					+ weekScore + "]";
+					+ weekScore + ", studentName=" + studentName + "]";
 		}
-		public Date getYymmdd() {
-			return yymmdd;
+		public SemiWeekVo(int monthNo, String tcid, String stid, String expect, String study, String stComment,
+				String acheive, int weekScore, String studentName) {
+			super();
+			this.monthNo = monthNo;
+			this.tcid = tcid;
+			this.stid = stid;
+			this.expect = expect;
+			this.study = study;
+			this.stComment = stComment;
+			this.acheive = acheive;
+			this.weekScore = weekScore;
+			this.studentName = studentName;
 		}
-		public void setYymmdd(Date yymmdd) {
-			this.yymmdd = yymmdd;
+	
+		public SemiWeekVo() {
+			super();
+		}
+		public int getMonthNo() {
+			return monthNo;
+		}
+		public void setMonthNo(int monthNo) {
+			this.monthNo = monthNo;
 		}
 		public String getTcid() {
 			return tcid;
@@ -65,6 +83,14 @@ public class SemiWeekVo {
 		public void setWeekScore(int weekScore) {
 			this.weekScore = weekScore;
 		}
+		public String getStudentName() {
+			return studentName;
+		}
+		public void setStudentName(String studentName) {
+			this.studentName = studentName;
+		}
+		
+		
 		
 		
 		

@@ -32,13 +32,14 @@ public class SemiStudentListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	//	String searchword=  request.getParameter("searchword");
 		SemiStudentService service = new SemiStudentService();
 		List<SemiStudentVo> result = service.selectListStudent();
-		System.out.println(result);
+		
 		request.setAttribute("semistudentlist", result);
+		//request.setAttribute("searchword", searchword);
+		
 		request.getRequestDispatcher("/WEB-INF/view/semistudent/student.jsp").forward(request, response);
-			
 		System.out.println("서블릿 돌아감");
 		
 		

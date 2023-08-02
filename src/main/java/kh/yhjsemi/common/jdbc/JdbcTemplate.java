@@ -2,6 +2,7 @@ package kh.yhjsemi.common.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -49,7 +50,16 @@ public class JdbcTemplate {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}public static void close(PreparedStatement pstmt) {
+		try {
+			if(pstmt!=null) {
+				pstmt.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
+	
 	public static void close(ResultSet rset) {
 		try {
 			if(rset!=null) {

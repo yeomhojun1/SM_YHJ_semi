@@ -1,4 +1,4 @@
-package kh.yhjsemi.teacher.controller;
+package kh.yhjsemi.week.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kh.yhjsemi.teacher.model.vo.SemiTeacherVo;
-import kh.yhjsemi.teacher.service.SemiTeacherService;
+import kh.yhjsemi.week.model.vo.SemiWeekVo;
+import kh.yhjsemi.week.service.SemiWeekService;
 
 /**
- * Servlet implementation class SemiTeacherListController
+ * Servlet implementation class SemiWeekListController
  */
-@WebServlet("/sm/teacher/list")
-public class SemiTeacherListController extends HttpServlet {
+@WebServlet("/sm/week/list")
+public class SemiWeekListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SemiTeacherListController() {
+    public SemiWeekListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,9 +31,19 @@ public class SemiTeacherListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		SemiTeacherService service = new SemiTeacherService();
-		List<SemiTeacherVo> result = service.selectListTeacher();
-		request.setAttribute("semiteacherlist", result);
-		request.getRequestDispatcher("/WEB-INF/view/semiteacher/teacher.jsp").forward(request, response);
+		SemiWeekService service = new SemiWeekService();
+		List<SemiWeekVo> result = service.selectListWeek();
+		request.setAttribute("semiweeklist", result);
+		request.getRequestDispatcher("/WEB-INF/view/semiweek/week.jsp").forward(request, response);
+	
+		
+		
+		
 	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	
+
 }

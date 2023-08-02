@@ -13,6 +13,21 @@ public class SemiStudentVo {
 	private String tele;
 
 	
+	public SemiStudentVo(String mid2, String studentName, int examScore, Date birthday, Date enterDate,
+			String important, String mid, String tele) {
+		super();
+		this.mid2 = mid2;
+		this.studentName = studentName;
+		this.examScore = examScore;
+		this.birthday = birthday;
+		this.enterDate = enterDate;
+		this.important = important;
+		this.mid = mid;
+		this.tele = tele;
+	}
+	public SemiStudentVo() {
+		super();
+	}
 	@Override
 	public String toString() {
 		return "SemiStudentVo [mid2=" + mid2 + ", studentName=" + studentName + ", examScore=" + examScore
