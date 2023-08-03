@@ -1,5 +1,3 @@
-<%@page import="kh.yhjsemi.student.model.vo.SemiStudentVo"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -7,13 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>학생 리스트</title>
+<title>${s } 검색결과</title>
 </head>
 <body>
-
-<h2>학생 리스트</h2>
-<div>
-		<form action="<%=request.getContextPath()%>/sm/student/search?searchword=${s}" method="get">
+<h2>${s } 검색결과</h2>
+			<form action="<%=request.getContextPath()%>/sm/student/search?searchword=${s}" method="get">
 
 	<input type="search" name="searchword" placeholder="검색">
 	<input type="submit" value="찾기">
@@ -35,7 +31,7 @@
 			<td>학생 전화번호</td>
 		</tr>
 	
-		<c:forEach items="${ semistudentlist }" var="item">
+		<c:forEach items="${ searchword }" var="item">
 		<tr>
 			
 			<td><a

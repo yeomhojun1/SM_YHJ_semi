@@ -47,17 +47,17 @@ public class SemiStudentDao {
 		}
 		return result;
 	}
-	public List<SemiStudentVo> selectListStudent(Connection conn,String searchword){
+	public List<SemiStudentVo> selectsearchStudent(Connection conn,String searchword){
 		List<SemiStudentVo> result =null;
-		String sql = "SELECT * FROM ACA_STUDENT where student_name like '%?%' or important like '%?%'";
+		String sql = "SELECT * FROM ACA_STUDENT where student_name like ? ";
 		getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			searchword = "%"+searchword+"%";  
 			pstmt.setString(1, searchword);
-			pstmt.setString(2, searchword);
 			rs = pstmt.executeQuery();
 		
 			if(rs.next() ) {
@@ -119,4 +119,5 @@ public class SemiStudentDao {
 		
 		return result;
 	}
+	
 }

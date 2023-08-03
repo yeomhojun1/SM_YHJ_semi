@@ -29,11 +29,6 @@ public class SemiWeekService {
 		close(conn);
 		return result;
 	}
-	public List<SemiWeekVo> selectListWeek(int currentpage, int pagesize,int totalpage){
-		Connection conn = JdbcTemplate.getConnection();
-		List<SemiWeekVo> result = dao.selectListWeek(conn, currentpage,pagesize,totalpage);
-		close(conn);
-		return result;
-	}
+
 		
 }

@@ -8,6 +8,8 @@ import static kh.yhjsemi.common.jdbc.JdbcTemplate.*;
 import kh.yhjsemi.common.jdbc.JdbcTemplate;
 import kh.yhjsemi.student.model.dao.SemiStudentDao;
 import kh.yhjsemi.student.model.vo.SemiStudentVo;
+import kh.yhjsemi.teacher.model.dao.SemiTeacherDao;
+import kh.yhjsemi.teacher.model.vo.SemiTeacherVo;
 import kh.yhjsemi.week.model.vo.SemiWeekVo;
 
 public class SemiStudentService {
@@ -19,13 +21,13 @@ public class SemiStudentService {
 		close(conn);
 		return result;
 	}
-	public List<SemiStudentVo> selectListStudent(String searchword) {
+	public List<SemiStudentVo> selectsearchStudent(String searchword) {
 		Connection conn = JdbcTemplate.getConnection();
-		List<SemiStudentVo> result = dao.selectListStudent(conn,searchword);
+		List<SemiStudentVo> result = dao.selectsearchStudent(conn,searchword);
 		close(conn);
 		return result;
 	}
-	public List<SemiWeekVo> selectOneStudent(String mid2) {
+	public List<SemiWeekVo> selectOneStudent( String mid2) {
 		Connection conn = getConnection();
 		List<SemiWeekVo> result = dao.selectOneStudent(conn,mid2);
 		close(conn);

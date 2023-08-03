@@ -10,9 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-	List<SemiTeacherVo> result = (List<SemiTeacherVo>)request.getAttribute("semiteacherlist");
-	%>
+	
 	<h2>선생님 리스트</h2>
 	<table border="1">
 	<tr>
@@ -20,18 +18,14 @@
 	<td>선생님 이름</td>
 	<td>입사날짜</td>
 	<td>학원 번호</td>
-		<%
-		for(int i =0;i<result.size();i++){
-			SemiTeacherVo vo = result.get(i);
-		
-		%>
+		<c:forEach items="${ semiteacherlist }" var="item">
 	<tr>
-	<td><%=vo.getMid() %></td>
-	<td><%=vo.getTeacherName() %></td>
-	<td><%=vo.getEntranceDate() %></td>
-	<td><%=vo.getAcaNo() %></td>
-	
-	<% } %>
+	<td><a href="<%=request.getContextPath()%>/sm/teacher/get?mid2=${item.mid }">${item.mid }</td>
+	<td><a href="<%=request.getContextPath()%>/sm/teacher/get?mid2=${item.mid }">${item.teacherName }</td>
+	<td>${ item.entranceDate}</td>
+	<td>${ item.acaNo}</td>
+	</tr>
+	</c:forEach>>
 	</table>
 </body>
 </html>
