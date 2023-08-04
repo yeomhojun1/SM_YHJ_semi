@@ -4,24 +4,30 @@ public class SemiMemberVo {
 	private String mid;
 	private String mpwd;
 	private String mtype;
+	private String mname;
+	
+	public SemiMemberVo() {
+		super();
+	}
 	public SemiMemberVo(String mid, String mpwd) {
 		super();
 		this.mid = mid;
 		this.mpwd = mpwd;
 	}
-	public SemiMemberVo(String mid, String mpwd,String mtype) {
+	public SemiMemberVo(String mid, String mpwd,String mtype, String mname) {
 		super();
 		this.mid = mid;
 		this.mpwd = mpwd;
 		this.mtype = mtype;
+		this.mname= mname;
 	}
-	public SemiMemberVo() {
-		super();
-	}
+	
+	
 	@Override
 	public String toString() {
-		return "SemiMemberVo [mid=" + mid + ", mpwd=" + mpwd + ", mtype=" + mtype + "]";
+		return "SemiMemberVo [mid=" + mid + ", mpwd=" + mpwd + ", mtype=" + mtype + ", mname=" + mname + "]";
 	}
+
 	public String getMid() {
 		return mid;
 	}
@@ -40,5 +46,12 @@ public class SemiMemberVo {
 	public void setMtype(String mtype) {
 		this.mtype = mtype;
 	}
+	public String getMname() {
+		return mname;
+	}
+	public void setMname(String mname) {
+		this.mname = mname;
+	}
+
 	
 }

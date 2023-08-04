@@ -113,5 +113,40 @@ public class SemiMemberDao {
 		
 		
 	}
+	public SemiMemberVo login(Connection conn, String mid,String mtype ) {
+		SemiMemberVo result = null;
+		String query = "";
+		PreparedStatement pstmt = null;
+		ResultSet rs= null;
+		try {
+			if(mtype.equals("t")) {
+				query= "select mid, mpwd, mtype,(select teacher_name from teacher where mid=?) mname from aca_member where mid=? ";
+			}else if(mtype.equals("s")) {
+				query="select mid, mpwd, mtype,(select student_name from aca_student where mid2=?) mname from aca_member where mid=? ";
+			}
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, mid);
+			pstmt.setString(2, mid);
+			rs= pstmt.executeQuery();
+			if(rs.next()) {
+				result= new SemiMemberVo(
+						rs.getString("mid"),
+						rs.getString("mpwd"),
+						rs.getString("mtype"),
+						rs.getString("mname")
+						
+						
+						);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		System.out.println(result);
+		return result;
+		
+		
+	}
 }
 

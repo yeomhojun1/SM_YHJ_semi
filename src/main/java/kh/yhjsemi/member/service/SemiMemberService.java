@@ -36,4 +36,12 @@ public class SemiMemberService {
 		close(conn);
 		return result;
 	}
+	public SemiMemberVo login(String mid,String mtype) {
+		SemiMemberVo result = null;
+		Connection conn = getConnection();
+		result = dao.login(conn, mid,mtype);
+		close(conn);
+		return result;
+	}
+	
 }

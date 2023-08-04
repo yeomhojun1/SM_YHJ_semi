@@ -37,15 +37,17 @@ public class SemiMemberLoginController extends HttpServlet {
 		String mid= request.getParameter("mid");
 		String mpwd= request.getParameter("mpwd");
 		String mtype= request.getParameter("mtype");
-		SemiMemberVo vo = new SemiMemberVo(mid,mpwd,mtype);
+		SemiMemberVo vo = new SemiMemberVo(mid,mpwd);
 		String sendUrl= request.getContextPath();
 		String result = new SemiMemberService().login(mid);
+		SemiMemberVo result1= new SemiMemberService().login(mid,mtype);
 		System.out.println(result);
-		System.out.println(mpwd);
+		System.out.println(result1);
+		
 		if(mtype.equals("t")) {
 			if(mpwd.equals(result)) {
 			request.setAttribute("loginid", mid);
-			request.getSession().setAttribute("SsLoginId", mid);
+			request.getSession().setAttribute("SsLoginId", result1.getMname());
 			request.getSession().setAttribute("successFailMsg", "선생님 환영합니다");
 			sendUrl += "/sm/teacher/get?mid="+mid;
 		}else {
@@ -55,11 +57,13 @@ public class SemiMemberLoginController extends HttpServlet {
 		}else if(mtype.equals("s")) {
 			if(mpwd.equals(result)) {
 				request.setAttribute("loginid", mid);
-				request.getSession().setAttribute("SsLoginId", mid);
+				request.getSession().setAttribute("SsLoginId", result1.getMname());
 				request.getSession().setAttribute("successFailMsg", " 학생 환영합니다");
 				sendUrl += "/sm/student/get?mid2="+mid;
 			}else {
 				request.getSession().setAttribute("successFailMsg", "로그인 실패하였습니다.\n 아이디와 패스워드를 다시 확인하고 로그인 시도해주세요.");
+				
+				
 				sendUrl += "/main";
 		}
 		

@@ -104,8 +104,6 @@ public class SemiTeacherDao {
 			}catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println(result);
 		return result;
 	}
 }

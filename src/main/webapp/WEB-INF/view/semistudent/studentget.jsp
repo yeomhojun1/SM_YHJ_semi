@@ -7,10 +7,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${mid2.get(0).studentName }주차별 정보</title>
+<title>${mid2.get(0).studentName } 주차별 정보</title>
 </head>
 <body>
-	<h2>${mid2.get(0).studentName }주차별 정보</h2>
+	<h2>${mid2.get(0).studentName } 주차별 정보</h2>
 	<form
 		action="<%=request.getContextPath()%>/sm/student/search?searchword=${s}"
 		method="get">
