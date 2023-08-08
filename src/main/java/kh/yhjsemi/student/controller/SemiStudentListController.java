@@ -33,6 +33,8 @@ public class SemiStudentListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	//	String searchword=  request.getParameter("searchword");
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset= UTF-8");
 		SemiStudentService service = new SemiStudentService();
 		List<SemiStudentVo> result = service.selectListStudent();
 		
@@ -40,7 +42,6 @@ public class SemiStudentListController extends HttpServlet {
 		//request.setAttribute("searchword", searchword);
 		
 		request.getRequestDispatcher("/WEB-INF/view/semistudent/student.jsp").forward(request, response);
-		System.out.println("서블릿 돌아감");
 		
 		
 		

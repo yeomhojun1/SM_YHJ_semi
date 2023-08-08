@@ -1,6 +1,7 @@
 	package kh.yhjsemi.student.model.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,9 +31,9 @@ public class SemiStudentDao {
 				SemiStudentVo vo = new SemiStudentVo();
 				vo.setMid2(rs.getString("MID2"));
 				vo.setStudentName(rs.getString("student_NAME"));
-				vo.setExamScore(rs.getInt("EXAM_sCORE"));
-				vo.setBirthday(rs.getDate("BIRTHDAY"));
-				vo.setEnterDate(rs.getDate("ENter_date"));
+				vo.setExamScore(rs.getString("EXAM_sCORE"));
+				vo.setBirthday(rs.getString("BIRTHDAY"));
+				vo.setEnterDate(rs.getString("ENter_date"));
 				vo.setImportant(rs.getString("important"));
 				vo.setMid(rs.getString("mid"));
 				vo.setTele(rs.getString("tele"));
@@ -66,9 +67,9 @@ public class SemiStudentDao {
 				SemiStudentVo vo = new SemiStudentVo();
 				vo.setMid2(rs.getString("MID2"));
 				vo.setStudentName(rs.getString("student_NAME"));
-				vo.setExamScore(rs.getInt("EXAM_sCORE"));
-				vo.setBirthday(rs.getDate("BIRTHDAY"));
-				vo.setEnterDate(rs.getDate("ENter_date"));
+				vo.setExamScore(rs.getString("EXAM_sCORE"));
+				vo.setBirthday(rs.getString("BIRTHDAY"));
+				vo.setEnterDate(rs.getString("ENter_date"));
 				vo.setImportant(rs.getString("important"));
 				vo.setMid(rs.getString("mid"));
 				vo.setTele(rs.getString("tele"));
@@ -119,5 +120,45 @@ public class SemiStudentDao {
 		
 		return result;
 	}
-	
+	public int insertStudent(Connection conn, SemiStudentVo vo) {
+		int result=0;
+		String sql= "insert into aca_student (mid2,student_Name,exam_Score,birthday,enter_Date"
+				+ ",important,mid,tele) values(?,?,?,to_date(?,'yy-mm-dd'),to_date(?,'yy-mm-dd'),?,?,?)";
+		PreparedStatement pstmt= null;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getMid2());
+			pstmt.setString(2, vo.getStudentName());
+			pstmt.setString(3, vo.getExamScore());
+			pstmt.setString(4, vo.getBirthday());
+			pstmt.setString(5, vo.getEnterDate());
+			pstmt.setString(6, vo.getImportant());
+			pstmt.setString(7, vo.getMid());
+			pstmt.setString(8, vo.getTele());
+			result= pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(conn);
+		}
+		return result;
+	}
+	public int deleteStudent(Connection conn, String mid2) {
+		int result= 0;
+		String sql = "delete from aca_student where mid2 = ?  ";
+		PreparedStatement pstmt = null;
+		try {
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setString(1, mid2);
+			result= pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(conn);
+		}
+		System.out.println(result);
+		return result;
+	}
 }

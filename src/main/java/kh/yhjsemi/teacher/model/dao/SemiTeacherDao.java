@@ -92,9 +92,9 @@ public class SemiTeacherDao {
 				SemiStudentVo vo = new SemiStudentVo();
 				vo.setMid2(rs.getString("MID2"));
 				vo.setStudentName(rs.getString("student_NAME"));
-				vo.setExamScore(rs.getInt("EXAM_sCORE"));
-				vo.setBirthday(rs.getDate("BIRTHDAY"));
-				vo.setEnterDate(rs.getDate("ENter_date"));
+				vo.setExamScore(rs.getString("EXAM_sCORE"));
+				vo.setBirthday(rs.getString("BIRTHDAY"));
+				vo.setEnterDate(rs.getString("ENter_date"));
 				vo.setImportant(rs.getString("important"));
 				vo.setMid(rs.getString("mid"));
 				vo.setTele(rs.getString("tele"));

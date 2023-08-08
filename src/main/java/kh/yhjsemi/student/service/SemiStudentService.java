@@ -33,4 +33,19 @@ public class SemiStudentService {
 		close(conn);
 		return result;
 	}
+	public int insertStudent( SemiStudentVo vo) {
+		int result =0;
+		Connection conn = getConnection();
+		result= dao.insertStudent(conn, vo);
+		close(conn);
+		return result;
+	}
+	public int deleteStudent( String mid2) {
+		int result= 0;
+		Connection conn = getConnection();
+		result= dao.deleteStudent(conn, mid2);
+		close(conn);
+		return result;
+	}
+	
 }

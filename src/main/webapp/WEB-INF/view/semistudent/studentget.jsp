@@ -18,7 +18,8 @@
 			type="submit" value="찾기">
 
 	</form>
-
+${mname }
+${successFailMsg }
 	<table border=1>
 		<tr>
 			<td>주차</td>
@@ -28,6 +29,7 @@
 			<td>선생님 코멘트</td>
 			<td>달성율</td>
 			<td>이번주 시험 점수</td>
+			
 		</tr>
 		<c:forEach items="${mid2 }" var="item">
 			<tr>

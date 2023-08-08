@@ -36,4 +36,15 @@ public class SemiTeacherVo {
 	public void setAcaNo(String acaNo) {
 		this.acaNo = acaNo;
 	}
+	public SemiTeacherVo(String mid, String teacherName, Date entranceDate, String acaNo) {
+		super();
+		this.mid = mid;
+		this.teacherName = teacherName;
+		this.entranceDate = entranceDate;
+		this.acaNo = acaNo;
+	}
+	public SemiTeacherVo() {
+		super();
+	}
+	
 }

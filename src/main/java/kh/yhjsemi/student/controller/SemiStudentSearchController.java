@@ -31,6 +31,8 @@ public class SemiStudentSearchController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset= UTF-8");
 		String searchword = request.getParameter("searchword");
 		//2. 전달받은 데이터를 활용해 DB학생 상세정보 가져오기
 		System.out.println(searchword);

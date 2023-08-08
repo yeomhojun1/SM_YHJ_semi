@@ -8,9 +8,10 @@
 </head>
 <body>
 <form action="<%=request.getContextPath() %>/sm/login" method="post">
-	id : <input type="text" name="mid"><br>
+	id : <input type="text" name="meid"><br>
 	password : <input type="password" name="mpwd"><br>
 	type : <input type="text" name="mtype"> <br>
 	<input type="submit" value="로그인">
+	</form>
 </body>
 </html>

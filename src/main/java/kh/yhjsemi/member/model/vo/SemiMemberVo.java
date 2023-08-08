@@ -1,7 +1,7 @@
 package kh.yhjsemi.member.model.vo;
 
 public class SemiMemberVo {
-	private String mid;
+	private String meid;
 	private String mpwd;
 	private String mtype;
 	private String mname;
@@ -9,30 +9,36 @@ public class SemiMemberVo {
 	public SemiMemberVo() {
 		super();
 	}
-	public SemiMemberVo(String mid, String mpwd) {
+	public SemiMemberVo(String meid, String mpwd) {
 		super();
-		this.mid = mid;
+		this.meid = meid;
 		this.mpwd = mpwd;
 	}
-	public SemiMemberVo(String mid, String mpwd,String mtype, String mname) {
+	public SemiMemberVo(String meid, String mpwd,String mtype, String mname) {
 		super();
-		this.mid = mid;
+		this.meid = meid;
 		this.mpwd = mpwd;
 		this.mtype = mtype;
 		this.mname= mname;
 	}
 	
 	
+	public SemiMemberVo(String meid, String mpwd, String mtype) {
+		super();
+		this.meid = meid;
+		this.mpwd = mpwd;
+		this.mtype = mtype;
+	}
 	@Override
 	public String toString() {
-		return "SemiMemberVo [mid=" + mid + ", mpwd=" + mpwd + ", mtype=" + mtype + ", mname=" + mname + "]";
+		return "SemiMemberVo [meid=" + meid + ", mpwd=" + mpwd + ", mtype=" + mtype + ", mname=" + mname + "]";
 	}
 
 	public String getMid() {
-		return mid;
+		return meid;
 	}
-	public void setMid(String mid) {
-		this.mid = mid;
+	public void setMid(String meid) {
+		this.meid = meid;
 	}
 	public String getMpwd() {
 		return mpwd;

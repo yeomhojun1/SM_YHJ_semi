@@ -21,25 +21,32 @@ public class SemiMemberService {
 	}
 
 	// 한 행 읽기 - PK로where조건
-	public SemiMemberVo selectOne(String mid) {
+	public SemiMemberVo selectOne(String meid) {
 		SemiMemberVo result = null;
 		Connection conn = getConnection();
-		result = dao.selectOne(conn, mid);
+		result = dao.selectOne(conn, meid);
 		close(conn);
 		return result;
 	}
 
-	public String login(String mid) {
+	public String login(String meid) {
 		String result = null;
 		Connection conn = getConnection();
-		result = dao.login(conn, mid);
+		result = dao.login(conn, meid);
 		close(conn);
 		return result;
 	}
-	public SemiMemberVo login(String mid,String mtype) {
+	public SemiMemberVo login(SemiMemberVo vo) {
 		SemiMemberVo result = null;
 		Connection conn = getConnection();
-		result = dao.login(conn, mid,mtype);
+		result = dao.login(conn, vo);
+		close(conn);
+		return result;
+	}
+	public int insertMember(SemiMemberVo vo) {
+		int result =0;
+		Connection conn = getConnection();
+		result= dao.insertMember(conn, vo);
 		close(conn);
 		return result;
 	}

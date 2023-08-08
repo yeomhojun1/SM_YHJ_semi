@@ -12,6 +12,7 @@
 <body>
 
 <h2>학생 리스트</h2>
+	
 <div>
 		<form action="<%=request.getContextPath()%>/sm/student/search?searchword=${s}" method="get">
 
@@ -20,7 +21,6 @@
 
 </form>
 </div>
-
 
 
 <table border="1">
@@ -33,6 +33,7 @@
 			<td>특이사항</td>
 			<td>선생님 번호</td>
 			<td>학생 전화번호</td>
+			<td>삭제 버튼</td>
 		</tr>
 	
 		<c:forEach items="${ semistudentlist }" var="item">
@@ -48,7 +49,7 @@
 			<td>${item.important }</td>
 			<td>${item.mid }</td>
 			<td>${item.tele }</td>
-			
+			<td><a href="<%=request.getContextPath()%>/sm/student/delete">${item.studentName } 삭제</a>
 
 		</tr>
 		</c:forEach>

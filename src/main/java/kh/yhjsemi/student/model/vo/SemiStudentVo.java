@@ -1,19 +1,19 @@
 package kh.yhjsemi.student.model.vo;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class SemiStudentVo {
 	private String mid2;
 	private String studentName;
-	private int examScore;
-	private Date birthday;
-	private Date enterDate;
+	private String examScore;
+	private String birthday;
+	private String enterDate;
 	private String important;
 	private String mid;
 	private String tele;
 
 	
-	public SemiStudentVo(String mid2, String studentName, int examScore, Date birthday, Date enterDate,
+	public SemiStudentVo(String mid2, String studentName, String examScore, String birthday, String enterDate,
 			String important, String mid, String tele) {
 		super();
 		this.mid2 = mid2;
@@ -47,22 +47,22 @@ public class SemiStudentVo {
 	public void setStudentName(String studentName) {
 		this.studentName = studentName;
 	}
-	public int getExamScore() {
+	public String getExamScore() {
 		return examScore;
 	}
-	public void setExamScore(int examScore) {
+	public void setExamScore(String examScore) {
 		this.examScore = examScore;
 	}
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
-	public Date getEnterDate() {
+	public String getEnterDate() {
 		return enterDate;
 	}
-	public void setEnterDate(Date enterDate) {
+	public void setEnterDate(String enterDate) {
 		this.enterDate = enterDate;
 	}
 	public String getImportant() {
