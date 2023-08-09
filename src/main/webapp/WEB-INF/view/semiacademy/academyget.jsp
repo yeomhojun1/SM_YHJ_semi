@@ -18,6 +18,9 @@
 	<div>
 		<a href="<%=request.getContextPath()%>/sm/member/insert">멤버등록</a>
 	</div>
+	<div>
+		<a href="<%=request.getContextPath()%>/sm/member/list">멤버 전체 보기</a>
+	</div>
 <table border="1">
 		<tr>
 			<td>선생님 사번</td>

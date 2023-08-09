@@ -24,7 +24,7 @@
 					<td>멤버 타입</td>
 					<td><input type="text" name="mtype"></td>
 				</tr>
-				
+					
 	
 			</table>
 			<button type="submit">멤버등록</button>

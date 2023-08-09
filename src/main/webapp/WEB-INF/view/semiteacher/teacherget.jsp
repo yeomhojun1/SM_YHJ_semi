@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${mname} 반학생 정보</title>
+<title> 반학생 정보</title>
 </head>
 <body>
 <h2>${mname } 반학생 정보</h2>

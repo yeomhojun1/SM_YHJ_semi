@@ -65,8 +65,11 @@ System.out.println(result);
 			request.getSession().setAttribute("msg", studentName+"학생 등록 되었습니다");
 			System.out.println(request.getSession().getAttribute("msg"));
 		}
-		response.sendRedirect(request.getContextPath()+"/sm/academy/get");
-	
+		if(loginVo.getMtype().equals("T")) {
+			response.sendRedirect(request.getContextPath()+"/sm/teacher/get?mid="+loginVo.getMid());
+			}else if(loginVo.getMtype().equals("A")) {
+				response.sendRedirect(request.getContextPath()+"/sm/academy/get?mid="+loginVo.getMid());
+			}
 	}
 
 }

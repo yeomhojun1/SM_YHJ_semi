@@ -41,10 +41,12 @@ public class SemiMemberLoginController extends HttpServlet {
 		String meid= request.getParameter("meid");
 		String mpwd= request.getParameter("mpwd");
 		String mtype= request.getParameter("mtype");
-		SemiMemberVo vo = new SemiMemberVo(meid,mpwd, mtype);
-		SemiMemberVo result= new SemiMemberService().login(vo);
+	
 		
-		System.out.println("잘 들어오는가");
+		SemiMemberVo vo = new SemiMemberVo(meid,mpwd);
+		System.out.println(vo);
+		SemiMemberVo result= new SemiMemberService().login(vo);
+		System.out.println("멤버로그인서블릿"+result);
 		if(result != null) {
 			request.getSession().setAttribute("loginVo", result);
 			if(mtype.equals("T")) {
@@ -55,7 +57,7 @@ public class SemiMemberLoginController extends HttpServlet {
 				sendUrl += "/sm/student/get?mid2="+meid;
 			}else if(mtype.equals("A")) {
 				request.getSession().setAttribute("successFailMsg", "어휴 물주님 어서오세요");
-				sendUrl += "/sm/academy/get?mid="+meid;
+				sendUrl += "/sm/member/list";
 			}
 		} else {
 			request.getSession().setAttribute("successFailMsg", "로그인 실패하였습니다.\n 아이디와 패스워드를 다시 확인하고 로그인 시도해주세요.");

@@ -29,26 +29,25 @@ public class SemiMemberInsertDoController extends HttpServlet {
 		String mid = request.getParameter("mid");
 		String mpwd = request.getParameter("mpwd");
 		String mtype = request.getParameter("mtype");
+		String mname= null;
 		SemiMemberVo vo = new SemiMemberVo();
 
 		vo.setMid(mid);
 		vo.setMpwd(mpwd);
 		vo.setMtype(mtype);
+		vo.setMname(mname);
 		int result = service.insertMember(vo);
 		SemiMemberVo loginVo = (SemiMemberVo) request.getSession().getAttribute("loginVo");
-		System.out.println(result);
+		System.out.println(loginVo);
 		if (result < 1) {
 			request.getSession().setAttribute("msg", "멤버 등록 실패!");
 			System.out.println(request.getSession().getAttribute("msg"));
 		} else {
 			request.getSession().setAttribute("msg", "멤버 등록 되었습니다");
 			System.out.println(request.getSession().getAttribute("msg"));
-		}
-		if(loginVo.getMtype().equals("S")) {
-			response.sendRedirect(request.getContextPath() + "/sm/student/get?mid2=" + loginVo.getMid());
-		}else if(loginVo.getMtype().equals("T"))
-		response.sendRedirect(request.getContextPath() + "/sm/teacher/get?mid=" + loginVo.getMid());
-
+	
+		response.sendRedirect(request.getContextPath() + "/sm/academy/get?mid=" + loginVo.getMid());
 	}
 
+}
 }

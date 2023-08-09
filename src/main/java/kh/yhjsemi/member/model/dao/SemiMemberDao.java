@@ -12,11 +12,18 @@ import static kh.yhjsemi.common.jdbc.JdbcTemplate.*;
 import kh.yhjsemi.member.model.vo.SemiMemberVo;
 
 public class SemiMemberDao {
-	public List<SemiMemberVo> selectList(Connection conn) {
-		System.out.println("[Board Dao selectList]");
+	public List<SemiMemberVo> selectListMember(Connection conn) {
 		List<SemiMemberVo> result = new ArrayList<SemiMemberVo>();
 
-		String subquery = "select * from aca_member ";
+		String subquery = 
+				 "select mid,  decode(mtype,'A','학원','S','학생','T','선생님') AS mtype, "
+				 + "decode(mtype"
+				 + ",'S', (select  student_name from ACA_STUDENT s where s.mid2=m.mid)"
+				 + ", 'T', (select  teacher_name t from teacher t where t.mid=m.mid)"
+				 + ", 'A',(select  aca_name from academy a where a.aca_no=m.mid )) mname "
+				 + " from aca_member m"
+				 + " order by mid" ;
+				
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -25,10 +32,11 @@ public class SemiMemberDao {
 			rs = pstmt.executeQuery();
 
 			while (rs.next() == true) {
-				SemiMemberVo dto = new SemiMemberVo(
-						
-						);
-				result.add(dto);
+				SemiMemberVo vo = new SemiMemberVo(	);
+						vo.setMid( rs.getString("mid"));
+						vo.setMname( rs.getString("mname"));
+						vo.setMtype( rs.getString("mtype"));
+				result.add(vo);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -50,7 +58,7 @@ public class SemiMemberDao {
 		
 		String query = " select m.*,  decode(mtype,'S', (select  student_name from ACA_STUDENT where mid2=?), 'T', (select  teacher_name from teacher where mid=?), 'A',(select  aca_name from academy where aca_no=?)) mname "
 				+ " from aca_member m "
-				+ " where mid=? and mpwd=? and mtype=?";
+				+ " where mid=? and mpwd=? ";
 
 		PreparedStatement pstmt = null;
 		SemiMemberVo result =null;
@@ -62,7 +70,6 @@ public class SemiMemberDao {
 			pstmt.setString(3, vo.getMid());
 			pstmt.setString(4, vo.getMid());
 			pstmt.setString(5, vo.getMpwd());
-			pstmt.setString(6, vo.getMtype());
 			rs= pstmt.executeQuery();
 			if(rs.next()) {
 				result= new SemiMemberVo();
@@ -149,6 +156,23 @@ public class SemiMemberDao {
 			close(pstmt);
 			close(conn);
 		}
+		return result;
+	}
+	public int deleteMember(Connection conn, String mid) {
+		int result= 0;
+		String sql = "delete from aca_member where mid = ?  ";
+		PreparedStatement pstmt = null;
+		try {
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setString(1, mid);
+			result= pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(conn);
+		}
+		System.out.println(result);
 		return result;
 	}
 	}

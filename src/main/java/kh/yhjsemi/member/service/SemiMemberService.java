@@ -12,10 +12,10 @@ import kh.yhjsemi.member.model.vo.SemiMemberVo;
 
 public class SemiMemberService {
 	private SemiMemberDao dao= new SemiMemberDao();
-	public List<SemiMemberVo> selectList() {
+	public List<SemiMemberVo> selectListMember() {
 		List<SemiMemberVo> result = null;
 		Connection conn = getConnection();
-		result = dao.selectList(conn);
+		result = dao.selectListMember(conn);
 		close(conn);
 		return result;
 	}
@@ -50,5 +50,11 @@ public class SemiMemberService {
 		close(conn);
 		return result;
 	}
-	
+	public int deleteMember( String mid) {
+		int result= 0;
+		Connection conn = getConnection();
+		result= dao.deleteMember(conn, mid);
+		close(conn);
+		return result;
+	}
 }

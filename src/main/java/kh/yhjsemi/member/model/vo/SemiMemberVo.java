@@ -23,10 +23,10 @@ public class SemiMemberVo {
 	}
 	
 	
-	public SemiMemberVo(String meid, String mpwd, String mtype) {
+	public SemiMemberVo(String meid,String mpwd,String mtype) {
 		super();
 		this.meid = meid;
-		this.mpwd = mpwd;
+		this.mname = mname;
 		this.mtype = mtype;
 	}
 	@Override
