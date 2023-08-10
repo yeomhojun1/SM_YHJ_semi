@@ -82,6 +82,7 @@ public class SemiMemberDao {
 		} finally {
 			close(pstmt);
 		}
+		System.out.println(result);
 		return result;
 	}
 	public String login(Connection conn, String meid ) {

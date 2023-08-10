@@ -27,8 +27,6 @@ public class SemiStudentDeleteController extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset= UTF-8");
 		String mid2 = request.getParameter("mid2");
 		SemiStudentService service = new SemiStudentService();
 		int result = service.deleteStudent(mid2);

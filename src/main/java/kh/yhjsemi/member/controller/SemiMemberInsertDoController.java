@@ -24,8 +24,6 @@ public class SemiMemberInsertDoController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset= UTF-8");
 		String mid = request.getParameter("mid");
 		String mpwd = request.getParameter("mpwd");
 		String mtype = request.getParameter("mtype");
@@ -46,7 +44,7 @@ public class SemiMemberInsertDoController extends HttpServlet {
 			request.getSession().setAttribute("msg", "멤버 등록 되었습니다");
 			System.out.println(request.getSession().getAttribute("msg"));
 	
-		response.sendRedirect(request.getContextPath() + "/sm/academy/get?mid=" + loginVo.getMid());
+		response.sendRedirect(request.getContextPath() + "/sm/member/list");
 	}
 
 }
