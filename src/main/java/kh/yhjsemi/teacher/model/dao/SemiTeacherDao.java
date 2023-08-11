@@ -17,6 +17,7 @@ import kh.yhjsemi.week.model.vo.SemiWeekVo;
 
 public class SemiTeacherDao {
 	public List<SemiTeacherVo> selectListTeacher(Connection conn){
+		System.out.println("[selectListTeacher 시작]");
 		List<SemiTeacherVo> result =null;
 		String sql = "SELECT * FROM teacher";
 		
@@ -43,10 +44,11 @@ public class SemiTeacherDao {
 		}finally {
 			close(rs);
 			close(pstmt);
-		}
+		}System.out.println("[selectListTeacher"+result);
 		return result;
 	}
 	public List<SemiTeacherVo> selectsearchTeacher(Connection conn,String searchword){
+		System.out.println("[selectsearchTeacher 시작]");
 		List<SemiTeacherVo> result =null;
 		String sql = "SELECT * FROM teacher where teacher_name like ? ";
 		getConnection();
@@ -74,9 +76,11 @@ public class SemiTeacherDao {
 			close(rs);
 			close(pstmt);
 		}
+		System.out.println("[selectsearchTeacher"+result);
 		return result;
 	}
 	public List<SemiStudentVo> selectOneTeacher(Connection conn, String mid) {
+		System.out.println("[selectOneTeacher 시작]");
 		 List<SemiStudentVo> result =null;
 		String sql = "select mid2, student_name, exam_score,birthday,enter_date,important,mid,tele from aca_student where mid= ? ";
 		getConnection();
@@ -104,6 +108,7 @@ public class SemiTeacherDao {
 			}catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println("[selectOneTeacher"+result);
 		return result;
 	}
 }

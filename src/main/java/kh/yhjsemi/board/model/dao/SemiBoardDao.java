@@ -16,6 +16,7 @@ import kh.yhjsemi.board.model.vo.SemiBoardVo;
 public class SemiBoardDao {
 	
 	public List<SemiBoardVo> selectListboard(Connection conn){
+		System.out.println("[selectListboard 시작]");
 		List<SemiBoardVo> result =null;
 		String sql = "SELECT bno,bwriter,btitle FROM bboard order by bno desc";
 		getConnection();
@@ -42,9 +43,11 @@ public class SemiBoardDao {
 			close(rs);
 			close(pstmt);
 		}
+		System.out.println("[selectListboard]"+result);
 		return result;
 	}
 	public List<SemiBoardVo> selectsearchboard(Connection conn,String searchword){
+		System.out.println("[selectsearchboard 시작]");
 		List<SemiBoardVo> result =null;
 		String sql = "SELECT bno,bwriter,btitle FROM bboard where btitle like ? or bwriter like ? ";
 		getConnection();
@@ -74,9 +77,11 @@ public class SemiBoardDao {
 			close(rs);
 			close(pstmt);
 		}
+		System.out.println("[selectsearchboard]"+result);
 		return result;
 	}
 	public SemiBoardVo selectOneboard(Connection conn, int bno ) {
+		System.out.println("[selectOneboard 시작]");
 		SemiBoardVo result =null;
 		String sql = "select bno,bwriter,btitle,bcontent FROM bboard where bno=?";
 		getConnection();
@@ -96,9 +101,11 @@ public class SemiBoardDao {
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println("[selectOneboard]"+result);
 		return result;
 	}
 	public int insertboard(Connection conn, SemiBoardVo vo) {
+		System.out.println("[insertboard 시작]");
 		int result=0;
 		String sql= "INSERT INTO BBOARD (BWRITER,BWRITER_NO,BTITLE,BCONTENT) VALUES ( ?, ?, ?,?)";
 		PreparedStatement pstmt= null;
@@ -115,10 +122,11 @@ public class SemiBoardDao {
 			close(pstmt);
 			close(conn);
 		}
-		System.out.println(result);
+		System.out.println("[insertboard]"+result);
 		return result;
 	}
 	public int deleteboard(Connection conn, int bno) {
+		System.out.println("[deleteboard 시작]");
 		int result= 0;
 		String sql = "delete from bboard where bno = ?  ";
 		PreparedStatement pstmt = null;
@@ -132,7 +140,7 @@ public class SemiBoardDao {
 			close(pstmt);
 			close(conn);
 		}
-		System.out.println(result);
+		System.out.println("[deleteboard]"+result);
 		return result;
 	}
 }

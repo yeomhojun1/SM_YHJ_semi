@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kh.yhjsemi.member.model.vo.SemiMemberVo;
 import kh.yhjsemi.student.model.vo.SemiStudentVo;
 import kh.yhjsemi.student.service.SemiStudentService;
 
@@ -33,6 +34,9 @@ public class SemiStudentSearchController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset= UTF-8");
+		SemiMemberVo loginq = (SemiMemberVo)request.getSession().getAttribute("loginVo");
+		if(loginq!= null) {
+		if(loginq.getMtype().equals('T')||loginq.getMtype().equals('A')) {
 		String searchword = request.getParameter("searchword");
 		//2. 전달받은 데이터를 활용해 DB학생 상세정보 가져오기
 		System.out.println(searchword);
@@ -43,6 +47,7 @@ public class SemiStudentSearchController extends HttpServlet {
 		request.setAttribute("s", searchword);
 		request.getRequestDispatcher("/WEB-INF/view/semistudent/studentsearch.jsp").forward(request, response);
 	}
-
+		}
+	}
 	
 }

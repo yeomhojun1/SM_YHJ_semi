@@ -15,7 +15,7 @@ public class SemiWeekDao {
 		List<SemiWeekVo> result= null;
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
-		String sql = "select (select student_name from aca_student a where mid2=?) student_name,s.* from st_week s";
+		String sql = "select w.* ,(select student_name from aca_student s where s.mid2=w.st_id) student_name from st_week w";
 		try {
 			pstmt= conn.prepareStatement(sql);
 			rs= pstmt.executeQuery();
@@ -31,7 +31,7 @@ public class SemiWeekDao {
 						rs.getString("st_Comment"),
 						rs.getString("acheive"),
 						rs.getInt("week_Score"),
-						rs.getString("studentName")
+						rs.getString("student_Name")
 						);
 				result.add(vo);
 				}while(rs.next());
@@ -59,14 +59,14 @@ public class SemiWeekDao {
 			}do {
 				SemiWeekVo vo = new SemiWeekVo(
 						rs.getInt("monthNo"),
-						rs.getString("tcid"),
-						rs.getString("stid"),
+						rs.getString("tc_id"),
+						rs.getString("st_id"),
 						rs.getString("expect"),
 						rs.getString("study"),
-						rs.getString("stComment"),
+						rs.getString("st_Comment"),
 						rs.getString("acheive"),
-						rs.getInt("weekScore"),
-						rs.getString("studentName")
+						rs.getInt("week_Score"),
+						rs.getString("student_Name")
 						);
 				result.add(vo);
 				}while(rs.next());

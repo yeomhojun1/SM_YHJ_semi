@@ -26,35 +26,35 @@ public class SemiBoardInsertDoController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		SemiMemberVo loginVo = (SemiMemberVo) request.getSession().getAttribute("loginVo");
-if(loginVo.getMtype().isEmpty()) {
-	response.sendRedirect(request.getContextPath() + "/main");
-}else {
-		if (loginVo.getMtype().equals("A")) {
-			SemiBoardService service = new SemiBoardService();
-			String bwriter =loginVo.getMname();
-			String bwriterNo =loginVo.getMid();
-			String btitle = request.getParameter("btitle");
-			String bcontent = request.getParameter("bcontent");
-
-			SemiBoardVo vo = new SemiBoardVo();
-			vo.setBwriter(bwriter);
-			vo.setBwriterNo(bwriterNo);
-			vo.setBtitle(btitle);
-			vo.setBcontent(bcontent);
-			int result = service.insertboard(vo);
-			if (result < 1) {
-				request.getSession().setAttribute("msg", "글 등록 실패!");
-				System.out.println(request.getSession().getAttribute("msg"));
-			} else {
-				request.getSession().setAttribute("msg", "글 등록 성공!!!!!");
-				System.out.println(request.getSession().getAttribute("msg"));
-			}
-			response.sendRedirect(request.getContextPath() + "/sm/board/list");
+		if (loginVo.getMtype().isEmpty()) {
+			response.sendRedirect(request.getContextPath() + "/main");
 		} else {
-			System.out.println("권한이 없습니다");
-			response.sendRedirect(request.getContextPath() + "/sm/board/list");
+			if (loginVo.getMtype().equals("A")) {
+				SemiBoardService service = new SemiBoardService();
+				String bwriter = loginVo.getMname();
+				String bwriterNo = loginVo.getMid();
+				String btitle = request.getParameter("btitle");
+				String bcontent = request.getParameter("bcontent");
+
+				SemiBoardVo vo = new SemiBoardVo();
+				vo.setBwriter(bwriter);
+				vo.setBwriterNo(bwriterNo);
+				vo.setBtitle(btitle);
+				vo.setBcontent(bcontent);
+				int result = service.insertboard(vo);
+				if (result < 1) {
+					request.getSession().setAttribute("msg", "글 등록 실패!");
+					System.out.println(request.getSession().getAttribute("msg"));
+				} else {
+					request.getSession().setAttribute("msg", "글 등록 성공!!!!!");
+					System.out.println(request.getSession().getAttribute("msg"));
+				}
+				response.sendRedirect(request.getContextPath() + "/sm/board/list");
+			} else {
+				System.out.println("권한이 없습니다");
+				response.sendRedirect(request.getContextPath() + "/sm/board/list");
+			}
 		}
 	}
-}
 }
 //}

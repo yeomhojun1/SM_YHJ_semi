@@ -13,6 +13,7 @@ import kh.yhjsemi.member.model.vo.SemiMemberVo;
 
 public class SemiMemberDao {
 	public List<SemiMemberVo> selectListMember(Connection conn) {
+		System.out.println("[selectListMember 시작]");
 		List<SemiMemberVo> result = new ArrayList<SemiMemberVo>();
 
 		String subquery = 
@@ -44,6 +45,7 @@ public class SemiMemberDao {
 			close(rs);
 			close(pstmt);
 		}
+		System.out.println("[selectListMember]"+result);
 		return result;
 	}
 	public SemiMemberVo selectOne(Connection conn, String  meid) {
@@ -55,7 +57,7 @@ public class SemiMemberDao {
 	}
 
 	public SemiMemberVo login(Connection conn, SemiMemberVo vo ) {
-		
+		System.out.println("[login 시작]");
 		String query = " select m.*,  decode(mtype,'S', (select  student_name from ACA_STUDENT where mid2=?), 'T', (select  teacher_name from teacher where mid=?), 'A',(select  aca_name from academy where aca_no=?)) mname "
 				+ " from aca_member m "
 				+ " where mid=? and mpwd=? ";
@@ -82,10 +84,11 @@ public class SemiMemberDao {
 		} finally {
 			close(pstmt);
 		}
-		System.out.println(result);
+		System.out.println("[login]"+result);
 		return result;
 	}
 	public String login(Connection conn, String meid ) {
+		System.out.println("[login 시작]");
 		String result = null;
 		String query = "select mpwd from aca_member where mid=? ";
 		PreparedStatement pstmt = null;
@@ -102,10 +105,11 @@ public class SemiMemberDao {
 		} finally {
 			close(pstmt);
 		}
-		System.out.println(result);
+		System.out.println("[login]"+result);
 		return result;
 	}
 	public SemiMemberVo login(Connection conn, String meid,String mtype ) {
+		System.out.println("[login 시작]");
 		SemiMemberVo result = null;
 		String query = "";
 		PreparedStatement pstmt = null;
@@ -138,9 +142,11 @@ public class SemiMemberDao {
 		} finally {
 			close(pstmt);
 		}
+		System.out.println("[login]"+result);
 		return result;
 	}
 	public int insertMember(Connection conn, SemiMemberVo vo) {
+		System.out.println("[insertMember]");
 		int result= 0;
 		System.out.println("[vo]="+vo);
 		String sql= "insert into aca_member (mid,mpwd,mtype) values(?,?,?)";
@@ -157,9 +163,11 @@ public class SemiMemberDao {
 			close(pstmt);
 			close(conn);
 		}
+		System.out.println("[insertMember]"+result);
 		return result;
 	}
 	public int deleteMember(Connection conn, String mid) {
+		System.out.println("[deleteMember]");
 		int result= 0;
 		String sql = "delete from aca_member where mid = ?  ";
 		PreparedStatement pstmt = null;
@@ -173,7 +181,7 @@ public class SemiMemberDao {
 			close(pstmt);
 			close(conn);
 		}
-		System.out.println(result);
+		System.out.println("[deleteMember]"+result);
 		return result;
 	}
 	}

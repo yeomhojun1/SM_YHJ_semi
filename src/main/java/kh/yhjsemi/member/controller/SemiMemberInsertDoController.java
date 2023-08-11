@@ -24,28 +24,38 @@ public class SemiMemberInsertDoController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String mid = request.getParameter("mid");
-		String mpwd = request.getParameter("mpwd");
-		String mtype = request.getParameter("mtype");
-		String mname= null;
-		SemiMemberVo vo = new SemiMemberVo();
+		SemiMemberVo loginq = (SemiMemberVo) request.getSession().getAttribute("loginVo");
+		if (loginq != null) {
+			if (loginq.getMtype().equals('A')) {
+				String mid = request.getParameter("mid");
+				String mpwd = request.getParameter("mpwd");
+				String mtype = request.getParameter("mtype");
+				String mname = null;
+				SemiMemberVo vo = new SemiMemberVo();
 
-		vo.setMid(mid);
-		vo.setMpwd(mpwd);
-		vo.setMtype(mtype);
-		vo.setMname(mname);
-		int result = service.insertMember(vo);
-		SemiMemberVo loginVo = (SemiMemberVo) request.getSession().getAttribute("loginVo");
-		System.out.println(loginVo);
-		if (result < 1) {
-			request.getSession().setAttribute("msg", "멤버 등록 실패!");
-			System.out.println(request.getSession().getAttribute("msg"));
-		} else {
-			request.getSession().setAttribute("msg", "멤버 등록 되었습니다");
-			System.out.println(request.getSession().getAttribute("msg"));
-	
-		response.sendRedirect(request.getContextPath() + "/sm/member/list");
+				vo.setMid(mid);
+				vo.setMpwd(mpwd);
+				vo.setMtype(mtype);
+				vo.setMname(mname);
+				int result = service.insertMember(vo);
+				SemiMemberVo loginVo = (SemiMemberVo) request.getSession().getAttribute("loginVo");
+				System.out.println(loginVo);
+				if (result < 1) {
+					request.getSession().setAttribute("msg", "멤버 등록 실패!");
+					System.out.println(request.getSession().getAttribute("msg"));
+				} else {
+					request.getSession().setAttribute("msg", "멤버 등록 되었습니다");
+					System.out.println(request.getSession().getAttribute("msg"));
+
+					response.sendRedirect(request.getContextPath() + "/sm/member/list");
+				}
+			} else {
+				System.out.println("권한이 없습니다");
+				response.sendRedirect(request.getContextPath() + "/sm/student/list");
+
+			}
+		}else {
+			response.sendRedirect(request.getContextPath() + "/main");
+		}
 	}
-
-}
 }

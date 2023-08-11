@@ -9,8 +9,27 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-	List<SemiWeekVo> result = (List<SemiWeekVo>)request.getAttribute("semiweeklist");
+<h2>
+		<a href="<%=request.getContextPath()%>/sm/home">홈으로 </a>
+	</h2>
+	<c:choose>
+		<c:when test="${not empty loginVo }">
+			<h2>${loginVo.mname }님반갑습니다</h2>
+			<form action="<%=request.getContextPath()%>/sm/logout" method="get">
+				<button type="submit">로그아웃</button>
+			</form>
+			</td>
+		</c:when>
+		<c:when test="${empty loginVo }">
+			<td><a href="<%=request.getContextPath()%>/main"></a></td>
+		</c:when>
+	</c:choose>
+	<hr>
+	<h2>
+		<a href="<%=request.getContextPath()%>/sm/board/list">공지사항 </a>
+	</h2>
+	<%
+	List<SemiWeekVo> result = (List<SemiWeekVo>) request.getAttribute("semiweeklist");
 	%>
 	<h2>학생 월별 정보</h2>
 	<table border=1>
@@ -24,22 +43,24 @@
 			<td>달성율</td>
 			<td>이번주 시험 점수</td>
 		</tr>
+
 		<%
-		for(int i =0;i<result.size();i++){
+		for (int i = 0; i < result.size(); i++) {
 			SemiWeekVo vo = result.get(i);
-		
 		%>
-			<tr>
-				<td><%=vo.getMonthNo() %></td>
-				<td><%=vo.getTcid() %></td>
-				<td><%=vo.getStid() %></td>
-				<td><%=vo.getExpect() %></td>
-				<td><%=vo.getStudy()%></td>
-				<td><%=vo.getStComment() %></td>
-				<td><%=vo.getAcheive() %></td>
-				<td><%=vo.getWeekScore() %></td>
-			</tr>
-<%} %>
+		<tr>
+			<td><%=vo.getMonthNo()%></td>
+			<td><%=vo.getTcid()%></td>
+			<td><%=vo.getStid()%></td>
+			<td><%=vo.getExpect()%></td>
+			<td><%=vo.getStudy()%></td>
+			<td><%=vo.getStComment()%></td>
+			<td><%=vo.getAcheive()%></td>
+			<td><%=vo.getWeekScore()%></td>
+		</tr>
+		<%
+		}
+		%>
 
 
 	</table>

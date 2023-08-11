@@ -10,6 +10,29 @@
 <title>${mname } 선생님반 리스트</title>
 </head>
 <body>
+<h2>
+		<a href="<%=request.getContextPath()%>/sm/home">홈으로 </a>
+	</h2>
+<c:choose>
+					<c:when test="${not empty loginVo }">
+					<h2>${loginVo.mname }님 반갑습니다</h2>
+						<form
+						action="<%=request.getContextPath()%>/sm/logout"
+						method="get">
+						<button type="submit">로그아웃</button>
+						</form>
+						</td>
+					</c:when>
+					<c:when test="${empty loginVo }">
+						<td><a
+							href="<%=request.getContextPath()%>/main">${item.mid }</a>
+						</td>
+					</c:when>
+				</c:choose>
+				<hr>
+				<h2>
+		<a href="<%=request.getContextPath()%>/sm/board/list">공지사항 </a>
+	</h2>
 
 	<h2>${mname } 선생님반 리스트</h2>
 	<div>

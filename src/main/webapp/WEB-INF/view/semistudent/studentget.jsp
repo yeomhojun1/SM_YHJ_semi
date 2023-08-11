@@ -10,6 +10,29 @@
 <title>${mid2.get(0).studentName } 주차별 정보</title>
 </head>
 <body>
+<h2>
+		<a href="<%=request.getContextPath()%>/sm/home">홈으로 </a>
+	</h2>
+<c:choose>
+					<c:when test="${not empty loginVo }">
+					<h2>${loginVo.mname }님 반갑습니다</h2>
+						<form
+						action="<%=request.getContextPath()%>/sm/logout"
+						method="get">
+						<button type="submit">로그아웃</button>
+						</form>
+						</td>
+					</c:when>
+					<c:when test="${empty loginVo }">
+						<td><a
+							href="<%=request.getContextPath()%>/main">${item.mid }</a>
+						</td>
+					</c:when>
+				</c:choose>
+				<hr>
+				<h2>
+		<a href="<%=request.getContextPath()%>/sm/board/list">공지사항 </a>
+	</h2>
 	<h2>${mid2.get(0).studentName } 주차별 정보</h2>
 	<form
 		action="<%=request.getContextPath()%>/sm/student/search?searchword=${s}"
@@ -18,8 +41,6 @@
 			type="submit" value="찾기">
 
 	</form>
-${mname }
-${successFailMsg }
 	<table border=1>
 		<tr>
 			<td>주차</td>

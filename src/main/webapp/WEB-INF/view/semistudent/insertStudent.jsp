@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h2>
+		<a href="<%=request.getContextPath()%>/sm/home">홈으로 </a>
+	</h2>
 <h2>학생등록</h2>
 	<div class="container">
 		<form action="<%=request.getContextPath()%>/sm/student/insert.do" method="post">

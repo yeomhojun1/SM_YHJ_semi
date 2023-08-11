@@ -44,7 +44,6 @@ public class SemiMemberLoginController extends HttpServlet {
 	
 		
 		SemiMemberVo vo = new SemiMemberVo(meid,mpwd);
-		System.out.println(vo);
 		SemiMemberVo result= new SemiMemberService().login(vo);
 		System.out.println("멤버로그인서블릿"+result);
 		if(result != null) {

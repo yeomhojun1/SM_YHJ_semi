@@ -20,31 +20,42 @@ import kh.yhjsemi.student.service.SemiStudentService;
 @WebServlet("/sm/member/list")
 public class SemiMemberListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SemiMemberListController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset= UTF-8");
-		SemiMemberService service = new SemiMemberService();
-		List<SemiMemberVo> result = service.selectListMember();
-//		System.out.println(result);
-		request.setAttribute("semimemberlist", result);
-		
-		request.getRequestDispatcher("/WEB-INF/view/semimember/member.jsp").forward(request, response);
+	public SemiMemberListController() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset= UTF-8");
+		SemiMemberVo loginq = (SemiMemberVo) request.getSession().getAttribute("loginVo");
+		if (loginq != null) {
+			if (loginq.getMtype().equals('A')) {
+				SemiMemberService service = new SemiMemberService();
+				List<SemiMemberVo> result = service.selectListMember();
+				request.setAttribute("semimemberlist", result);
+				request.getRequestDispatcher("/WEB-INF/view/semimember/member.jsp").forward(request, response);
+			} else {
+				System.out.println("권한이 없습니다");
+				response.sendRedirect(request.getContextPath() + "/sm/student/list");
+			}
+		} else {
+			response.sendRedirect(request.getContextPath() + "/main");
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
 
 }

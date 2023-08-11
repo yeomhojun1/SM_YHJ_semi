@@ -8,6 +8,9 @@
 </head>
 <body>
 <h2>글쓰기</h2>
+<h2>
+		<a href="<%=request.getContextPath()%>/sm/home">홈으로 </a>
+	</h2>
 	<div class="container">
 		<form action="<%=request.getContextPath()%>/sm/board/insert.do" method="post">
 

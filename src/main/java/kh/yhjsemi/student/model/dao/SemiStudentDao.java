@@ -15,6 +15,7 @@ import kh.yhjsemi.week.model.vo.SemiWeekVo;
 
 public class SemiStudentDao {
 	public List<SemiStudentVo> selectListStudent(Connection conn){
+		System.out.println("[selectListStudent 시작]");
 		List<SemiStudentVo> result =null;
 		String sql = "SELECT * FROM ACA_STUDENT";
 		getConnection();
@@ -46,9 +47,11 @@ public class SemiStudentDao {
 			close(rs);
 			close(pstmt);
 		}
+		System.out.println("[selectListStudent]"+result);
 		return result;
 	}
 	public List<SemiStudentVo> selectsearchStudent(Connection conn,String searchword){
+		System.out.println("[selectsearchStudent 시작]");
 		List<SemiStudentVo> result =null;
 		String sql = "SELECT * FROM ACA_STUDENT where student_name like ? ";
 		getConnection();
@@ -82,9 +85,11 @@ public class SemiStudentDao {
 			close(rs);
 			close(pstmt);
 		}
+		System.out.println("[selectsearchStudent]"+result);
 		return result;
 	}
 	public List<SemiWeekVo> selectOneStudent(Connection conn, String mid2) {
+		System.out.println("[selectOneStudent]");
 		 List<SemiWeekVo> result =null;
 		String sql = "select (select student_name from aca_student a where mid2=?) student_name, monthNo,Tc_id,St_id,Expect,Study,St_Comment,Acheive,Week_Score"
 				+ " from st_week s where st_id = ?";
@@ -116,11 +121,12 @@ public class SemiStudentDao {
 			e.printStackTrace();
 		}
 		
-		System.out.println("dao실행됨");
+		System.out.println("[selectOneStudent]"+result);
 		
 		return result;
 	}
 	public int insertStudent(Connection conn, SemiStudentVo vo) {
+		System.out.println("[insertStudent 시작]");
 		int result=0;
 		String sql= "insert into aca_student (mid2,student_Name,exam_Score,birthday,enter_Date"
 				+ ",important,mid,tele) values(?,?,?,to_date(?,'yy-mm-dd'),to_date(?,'yy-mm-dd'),?,?,?)";
@@ -141,10 +147,11 @@ public class SemiStudentDao {
 		}finally {
 			close(pstmt);
 			close(conn);
-		}
+		}System.out.println("[insertStudent]"+result);
 		return result;
 	}
 	public int deleteStudent(Connection conn, String mid2) {
+		System.out.println("[deleteStudent 시작]");
 		int result= 0;
 		String sql = "delete from aca_student where mid2 = ?  ";
 		PreparedStatement pstmt = null;
@@ -158,7 +165,7 @@ public class SemiStudentDao {
 			close(pstmt);
 			close(conn);
 		}
-		System.out.println(result);
+		System.out.println("[deleteStudent]"+result);
 		return result;
 	}
 }
