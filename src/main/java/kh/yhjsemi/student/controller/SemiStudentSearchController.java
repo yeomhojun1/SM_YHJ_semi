@@ -36,7 +36,7 @@ public class SemiStudentSearchController extends HttpServlet {
 		response.setContentType("text/html; charset= UTF-8");
 		SemiMemberVo loginq = (SemiMemberVo)request.getSession().getAttribute("loginVo");
 		if(loginq!= null) {
-		if(loginq.getMtype().equals('T')||loginq.getMtype().equals('A')) {
+		if(loginq.getMtype().equals("T")||loginq.getMtype().equals("A")) {
 		String searchword = request.getParameter("searchword");
 		//2. 전달받은 데이터를 활용해 DB학생 상세정보 가져오기
 		System.out.println(searchword);

@@ -32,7 +32,7 @@ public class SemiMemberDeleteController extends HttpServlet {
 		response.setContentType("text/html; charset= UTF-8");
 		SemiMemberVo loginq = (SemiMemberVo) request.getSession().getAttribute("loginVo");
 		if (loginq != null) {
-			if (loginq.getMtype().equals('A')) {
+			if (loginq.getMtype().equals("A")) {
 				String mid = request.getParameter("mid");
 				SemiMemberService service = new SemiMemberService();
 				int result = service.deleteMember(mid);

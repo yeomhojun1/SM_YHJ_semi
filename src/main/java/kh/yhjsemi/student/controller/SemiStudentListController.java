@@ -40,7 +40,7 @@ public class SemiStudentListController extends HttpServlet {
 		response.setContentType("text/html; charset= UTF-8");
 		SemiMemberVo loginq = (SemiMemberVo) request.getSession().getAttribute("loginVo");
 		if (loginq != null) {
-			if (loginq.getMtype().equals('T') || loginq.getMtype().equals('A')) {
+			if (loginq.getMtype().equals("T") || loginq.getMtype().equals("A")) {
 				SemiStudentService service = new SemiStudentService();
 				List<SemiStudentVo> result = service.selectListStudent();
 

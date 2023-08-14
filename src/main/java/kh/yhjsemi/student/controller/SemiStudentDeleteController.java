@@ -29,7 +29,7 @@ public class SemiStudentDeleteController extends HttpServlet {
 			throws ServletException, IOException {
 		SemiMemberVo loginq = (SemiMemberVo) request.getSession().getAttribute("loginVo");
 		if (loginq != null) {
-			if (loginq.getMtype().equals('A') || loginq.getMtype().equals('T')) {
+			if (loginq.getMtype().equals("A") || loginq.getMtype().equals("T")) {
 				String mid2 = request.getParameter("mid2");
 				SemiStudentService service = new SemiStudentService();
 				int result = service.deleteStudent(mid2);

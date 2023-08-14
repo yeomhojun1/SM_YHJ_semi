@@ -28,7 +28,7 @@ public class SemiStudentInsertController extends HttpServlet {
 			throws ServletException, IOException {
 		SemiMemberVo loginq = (SemiMemberVo) request.getSession().getAttribute("loginVo");
 		if (loginq != null) {
-			if (loginq.getMtype().equals('A') || loginq.getMtype().equals('T')) {
+			if (loginq.getMtype().equals("A") || loginq.getMtype().equals("T")) {
 				request.setCharacterEncoding("UTF-8");
 				response.setContentType("text/html; charset= UTF-8");
 				request.getRequestDispatcher("/WEB-INF/view/semistudent/insertStudent.jsp").forward(request, response);

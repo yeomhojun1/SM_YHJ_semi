@@ -34,7 +34,7 @@ public class SemiMemberInsertController extends HttpServlet {
 		response.setContentType("text/html; charset= UTF-8");
 		SemiMemberVo loginq = (SemiMemberVo) request.getSession().getAttribute("loginVo");
 		if (loginq != null) {
-			if (loginq.getMtype().equals('A')) {
+			if (loginq.getMtype().equals("A")) {
 				request.getRequestDispatcher("/WEB-INF/view/semimember/insertmember.jsp").forward(request, response);
 			} else {
 				System.out.println("권한이 없습니다");

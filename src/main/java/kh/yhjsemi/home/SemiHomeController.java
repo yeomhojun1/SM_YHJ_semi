@@ -27,11 +27,11 @@ public class SemiHomeController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SemiMemberVo loginq = (SemiMemberVo) request.getSession().getAttribute("loginVo");
 		if (loginq != null) {
-			if (loginq.getMtype().equals('A') ) {
+			if (loginq.getMtype().equals("A") ) {
 				response.sendRedirect(request.getContextPath() + "/sm/member/list");
-			}else if(loginq.getMtype().equals('T'))	{
+			}else if(loginq.getMtype().equals("T"))	{
 				response.sendRedirect(request.getContextPath() + "/sm/teacher/get?mid="+loginq.getMid());
-			}else if(loginq.getMtype().equals('S')) {
+			}else if(loginq.getMtype().equals("S")) {
 				response.sendRedirect(request.getContextPath() + "/sm/student/get?mid2="+loginq.getMid());
 			}
 		}else {

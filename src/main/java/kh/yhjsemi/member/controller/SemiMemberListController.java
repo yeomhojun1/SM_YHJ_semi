@@ -39,7 +39,7 @@ public class SemiMemberListController extends HttpServlet {
 		response.setContentType("text/html; charset= UTF-8");
 		SemiMemberVo loginq = (SemiMemberVo) request.getSession().getAttribute("loginVo");
 		if (loginq != null) {
-			if (loginq.getMtype().equals('A')) {
+			if (loginq.getMtype().equals("A")) {
 				SemiMemberService service = new SemiMemberService();
 				List<SemiMemberVo> result = service.selectListMember();
 				request.setAttribute("semimemberlist", result);

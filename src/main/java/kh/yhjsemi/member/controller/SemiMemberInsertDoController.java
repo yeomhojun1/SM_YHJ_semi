@@ -26,7 +26,7 @@ public class SemiMemberInsertDoController extends HttpServlet {
 			throws ServletException, IOException {
 		SemiMemberVo loginq = (SemiMemberVo) request.getSession().getAttribute("loginVo");
 		if (loginq != null) {
-			if (loginq.getMtype().equals('A')) {
+			if (loginq.getMtype().equals("A")) {
 				String mid = request.getParameter("mid");
 				String mpwd = request.getParameter("mpwd");
 				String mtype = request.getParameter("mtype");
