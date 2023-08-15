@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,15 @@
                     <option value="T" label="선생님"></option>
                     <option value="A"label="학원"></option>
                 </select><br>
-	<input type="submit" value="로그인">
+	<input type="submit" onclick="msg()" value="로그인">
 	</form>
+	<script>
+	function msg(){
+	var msg = '${successFailMsg}';
+		if(msg!=null){
+		alert(msg);
+		}
+	}
+</script>
 </body>
 </html>

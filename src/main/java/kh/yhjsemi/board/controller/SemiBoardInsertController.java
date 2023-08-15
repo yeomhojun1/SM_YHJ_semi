@@ -35,7 +35,7 @@ public class SemiBoardInsertController extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/view/semiboard/boardinsert.jsp").forward(request, response);
 			} else {
 				System.out.println("권한이 없습니다");
-				response.sendRedirect(request.getContextPath() + "/sm/board/list");
+				response.sendRedirect(request.getContextPath() + "/sm/error");
 			}
 		} else {
 			response.sendRedirect(request.getContextPath() + "/main");

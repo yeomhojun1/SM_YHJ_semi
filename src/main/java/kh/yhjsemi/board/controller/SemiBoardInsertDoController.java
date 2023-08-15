@@ -52,7 +52,7 @@ public class SemiBoardInsertDoController extends HttpServlet {
 				response.sendRedirect(request.getContextPath() + "/sm/board/list");
 			} else {
 				System.out.println("권한이 없습니다");
-				response.sendRedirect(request.getContextPath() + "/sm/board/list");
+				response.sendRedirect(request.getContextPath() + "/sm/error");
 			}
 		}
 	}

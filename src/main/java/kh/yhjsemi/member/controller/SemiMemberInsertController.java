@@ -38,7 +38,7 @@ public class SemiMemberInsertController extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/view/semimember/insertmember.jsp").forward(request, response);
 			} else {
 				System.out.println("권한이 없습니다");
-				response.sendRedirect(request.getContextPath() + "/student/list");
+				response.sendRedirect(request.getContextPath() + "/sm/error");
 			}
 		} else {
 			response.sendRedirect(request.getContextPath() + "/main");

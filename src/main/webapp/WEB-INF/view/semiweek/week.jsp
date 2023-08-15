@@ -9,6 +9,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<script>
+	function logoutmsg(){
+	var msg = '${logoutmsg}';
+		if(msg!=null){
+		alert(msg);
+		}
+	}
+</script>
 <h2>
 		<a href="<%=request.getContextPath()%>/sm/home">홈으로 </a>
 	</h2>
@@ -16,7 +24,7 @@
 		<c:when test="${not empty loginVo }">
 			<h2>${loginVo.mname }님반갑습니다</h2>
 			<form action="<%=request.getContextPath()%>/sm/logout" method="get">
-				<button type="submit">로그아웃</button>
+				<button type="submit" onclick="logoutmsg">로그아웃</button>
 			</form>
 			</td>
 		</c:when>

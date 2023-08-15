@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SemiMemberLogoutController
+ * Servlet implementation class SemiMemberErrorController
  */
-@WebServlet("/sm/logout")
-public class SemiMemberLogoutController extends HttpServlet {
+@WebServlet("/sm/error")
+public class SemiMemberErrorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SemiMemberLogoutController() {
+    public SemiMemberErrorController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,16 +26,12 @@ public class SemiMemberLogoutController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().removeAttribute("loginVo");
-		request. getSession().setAttribute("logoutmsg", "로그아웃 됐습니다");
-		response.sendRedirect(request.getContextPath()+"/main");
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.getRequestDispatcher("/WEB-INF/view/semierror/errorpage.jsp").forward(request, response);
+		
 		
 	}
+
+
 
 }

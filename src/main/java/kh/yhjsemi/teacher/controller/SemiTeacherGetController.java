@@ -52,8 +52,7 @@ public class SemiTeacherGetController extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/view/semiacademy/academyget.jsp").forward(request, response);
 
 			} else {
-				System.out.println("권한이 없습니다");
-				response.sendRedirect(request.getContextPath() + "/sm/teacher/list");
+				response.sendRedirect(request.getContextPath() + "/sm/error");
 			}
 		} else {
 			response.sendRedirect(request.getContextPath() + "/main");

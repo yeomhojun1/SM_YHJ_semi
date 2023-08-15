@@ -41,7 +41,8 @@ public class SemiWeekGetController extends HttpServlet {
 	request.setAttribute("mid2", vo);
 		request.getRequestDispatcher("/WEB-INF/view/semistudent/studentget.jsp").forward(request, response);
 	}else {
-		response.sendRedirect(request.getContextPath() + "/main" );
+		response.sendRedirect(request.getContextPath() + "/sm/error");
+	
 	}
 	}
 

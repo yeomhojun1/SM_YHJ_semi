@@ -10,6 +10,14 @@
 <title>${mid2.get(0).studentName } 주차별 정보</title>
 </head>
 <body>
+<script>
+	function logoutmsg(){
+	var msg = '${logoutmsg}';
+		if(msg!=null){
+		alert(msg);
+		}
+	}
+</script>
 <h2>
 		<a href="<%=request.getContextPath()%>/sm/home">홈으로 </a>
 	</h2>
@@ -19,7 +27,7 @@
 						<form
 						action="<%=request.getContextPath()%>/sm/logout"
 						method="get">
-						<button type="submit">로그아웃</button>
+						<button type="submit" onclick="logoutmsg()">로그아웃</button>
 						</form>
 						</td>
 					</c:when>
