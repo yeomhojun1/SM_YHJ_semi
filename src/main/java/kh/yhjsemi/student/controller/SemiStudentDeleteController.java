@@ -50,7 +50,6 @@ public class SemiStudentDeleteController extends HttpServlet {
 						response.sendRedirect(request.getContextPath() + "/sm/academy/get?mid=" + loginVo.getMid());
 					}
 				}
-
 			} else {
 				response.sendRedirect(request.getContextPath() + "/sm/error");			}
 		} else {

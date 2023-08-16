@@ -29,13 +29,13 @@ public class SemiMemberService {
 		return result;
 	}
 
-	public String login(String meid) {
-		String result = null;
-		Connection conn = getConnection();
-		result = dao.login(conn, meid);
-		close(conn);
-		return result;
-	}
+//	public String login(String meid) {
+//		String result = null;
+//		Connection conn = getConnection();
+//		result = dao.login(conn, meid);
+//		close(conn);
+//		return result;
+//	}
 	public SemiMemberVo login(SemiMemberVo vo) {
 		SemiMemberVo result = null;
 		Connection conn = getConnection();

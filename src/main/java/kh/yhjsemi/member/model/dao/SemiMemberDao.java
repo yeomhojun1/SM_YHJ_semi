@@ -57,8 +57,10 @@ public class SemiMemberDao {
 	}
 
 	public SemiMemberVo login(Connection conn, SemiMemberVo vo ) {
-		System.out.println("[login 시작]");
-		String query = " select m.*,  decode(mtype,'S', (select  student_name from ACA_STUDENT where mid2=?), 'T', (select  teacher_name from teacher where mid=?), 'A',(select  aca_name from academy where aca_no=?)) mname "
+		System.out.println("[login 멤버vo 시작]");
+		String query = " select m.*,  decode(mtype,'S', (select  student_name from ACA_STUDENT where mid2=?),"
+				+ " 'T', (select  teacher_name from teacher where mid=?),"
+				+ " 'A',(select  aca_name from academy where aca_no=?)) mname "
 				+ " from aca_member m "
 				+ " where mid=? and mpwd=? ";
 
@@ -87,64 +89,64 @@ public class SemiMemberDao {
 		System.out.println("[login]"+result);
 		return result;
 	}
-	public String login(Connection conn, String meid ) {
-		System.out.println("[login 시작]");
-		String result = null;
-		String query = "select mpwd from aca_member where mid=? ";
-		PreparedStatement pstmt = null;
-		ResultSet rs= null;
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, meid);
-			rs= pstmt.executeQuery();
-			if(rs.next()) {
-				result = rs.getString("mpwd");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		System.out.println("[login]"+result);
-		return result;
-	}
-	public SemiMemberVo login(Connection conn, String meid,String mtype ) {
-		System.out.println("[login 시작]");
-		SemiMemberVo result = null;
-		String query = "";
-		PreparedStatement pstmt = null;
-		ResultSet rs= null;
-		System.out.println(mtype);
-		try {
-			if(mtype.equals("t")) {
-				query= "select mid, mpwd, mtype,(select teacher_name from teacher where mid=?) mname from aca_member where mid=? ";
-			}else if(mtype.equals("s")) {
-				query="select mid, mpwd, mtype,(select student_name from aca_student where mid2=?) mname from aca_member where mid=? ";
-			}
-			else if(mtype.equals("a")) {
-				query="select mid, mpwd, mtype,(select aca_name from academy where aca_no=?) mname from aca_member where mid=? ";
-			}
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, meid);
-			pstmt.setString(2, meid);
-			rs= pstmt.executeQuery();
-			
-			if(rs.next()) {
-				result= new SemiMemberVo(
-						rs.getString("mid"),
-						rs.getString("mpwd"),
-						rs.getString("mtype"),
-						rs.getString("mname")
-						);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		System.out.println("[login]"+result);
-		return result;
-	}
+//	public String login(Connection conn, String meid ) {
+//		System.out.println("[login 아이디만 보유 시작]");
+//		String result = null;
+//		String query = "select mpwd from aca_member where mid=? ";
+//		PreparedStatement pstmt = null;
+//		ResultSet rs= null;
+//		try {
+//			pstmt = conn.prepareStatement(query);
+//			pstmt.setString(1, meid);
+//			rs= pstmt.executeQuery();
+//			if(rs.next()) {
+//				result = rs.getString("mpwd");
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(pstmt);
+//		}
+//		System.out.println("[login]"+result);
+//		return result;
+//	}
+//	public SemiMemberVo login(Connection conn, String meid,String mtype ) {
+//		System.out.println("[login 아이디랑 타입 시작]");
+//		SemiMemberVo result = null;
+//		String query = "";
+//		PreparedStatement pstmt = null;
+//		ResultSet rs= null;
+//		System.out.println(mtype);
+//		try {
+//			if(mtype.equals("t")) {
+//				query= "select mid, mpwd, mtype,(select teacher_name from teacher where mid=?) mname from aca_member where mid=? ";
+//			}else if(mtype.equals("s")) {
+//				query="select mid, mpwd, mtype,(select student_name from aca_student where mid2=?) mname from aca_member where mid=? ";
+//			}
+//			else if(mtype.equals("a")) {
+//				query="select mid, mpwd, mtype,(select aca_name from academy where aca_no=?) mname from aca_member where mid=? ";
+//			}
+//			pstmt = conn.prepareStatement(query);
+//			pstmt.setString(1, meid);
+//			pstmt.setString(2, meid);
+//			rs= pstmt.executeQuery();
+//			
+//			if(rs.next()) {
+//				result= new SemiMemberVo(
+//						rs.getString("mid"),
+//						rs.getString("mpwd"),
+//						rs.getString("mtype"),
+//						rs.getString("mname")
+//						);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(pstmt);
+//		}
+//		System.out.println("[login]"+result);
+//		return result;
+//	}
 	public int insertMember(Connection conn, SemiMemberVo vo) {
 		System.out.println("[insertMember]");
 		int result= 0;
