@@ -14,7 +14,7 @@
 	 type : <select name="mtype">
                     <option value="S" label="학생" ></option>
                     <option value="T" label="선생님"></option>
-                    <option value="A"label="학원"></option>
+                    <option value="A" label="학원"></option>
                 </select><br>
 	<input type="submit" onclick="msg()" value="로그인">
 	</form>
