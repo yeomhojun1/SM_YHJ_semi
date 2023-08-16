@@ -47,7 +47,7 @@ public class SemiMemberDeleteController extends HttpServlet {
 				
 					response.sendRedirect(request.getContextPath() + "/sm/member/list");
 				}else {
-					response.sendRedirect(request.getContextPath() + "/sm/board/list");
+					response.sendRedirect(request.getContextPath() + "/sm/error");
 					
 				}
 			}

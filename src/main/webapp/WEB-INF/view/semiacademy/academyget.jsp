@@ -5,20 +5,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${mname}학원선생님 정보</title>
+<title>${mname}학원선생님정보</title>
+<style>
+.sm-header {
+	background: beige;
+	text-align: center;
+	height: 150px;
+}
+
+.sm-footer {
+	background: beige;
+	text-align: center;
+	height: 100px;
+}
+</style>
 </head>
 <body>
-<script>
-	function logoutmsg(){
-	var msg = '${logoutmsg}';
-		if(msg!=null){
-		alert(msg);
+	<script>
+		function logoutmsg() {
+			var msg = '${logoutmsg}';
+			if (msg != null) {
+				alert(msg);
+			}
 		}
-	}
-</script>
-<h2>
-		<a href="<%=request.getContextPath()%>/sm/home">홈으로 </a>
-	</h2>
+	</script>
+	<div class="sm-header">
+		<h2>
+			<a href="<%=request.getContextPath()%>/sm/home">염호준 수학</a>
+		</h2>
+	</div>
 	<c:choose>
 		<c:when test="${not empty loginVo }">
 			<h2>${loginVo.mname }님반갑습니다</h2>
@@ -66,5 +81,8 @@
 				</tr>
 			</c:forEach>
 	</table>
+	<div class="sm-footer">
+		<h4>저작권 관련</h4>
+	</div>
 </body>
 </html>

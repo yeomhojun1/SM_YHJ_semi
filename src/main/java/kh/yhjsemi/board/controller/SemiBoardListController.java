@@ -25,7 +25,7 @@ public class SemiBoardListController extends HttpServlet {
 		List<SemiBoardVo> result = service.selectListboard();
 		
 		request.setAttribute("semiboardlist", result);
-		
+		request.getSession().removeAttribute("msg");
 		request.getRequestDispatcher("/WEB-INF/view/semiboard/board.jsp").forward(request, response);
 	}
 

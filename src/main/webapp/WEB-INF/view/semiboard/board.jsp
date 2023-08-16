@@ -6,6 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.sm-header{
+background: beige;
+text-align: center;
+height: 150px;
+}
+.sm-footer{
+background: beige;
+text-align: center;
+height: 100px;
+}
+</style>
 </head>
 <body>
 <script>
@@ -16,9 +28,9 @@
 		}
 	}
 </script>
-	<h2>
-		<a href="<%=request.getContextPath()%>/sm/home">홈으로 </a>
-	</h2>
+<div class="sm-header">
+<h2><a href="<%=request.getContextPath()%>/sm/home">염호준 수학</a></h2>
+</div>
 	<c:choose>
 		<c:when test="${not empty loginVo }">
 			<h2>${loginVo.mname }님반갑습니다</h2>
@@ -56,7 +68,7 @@
 							action="<%=request.getContextPath()%>/sm/board/delete"
 							method="post">
 							<input type="hidden" name="bno" value="${item.bno }">
-							<button type="submit">delete</button>
+							<button type="submit" >delete</button>
 						</form></td>
 
 				</tr>
@@ -66,6 +78,8 @@
 	<div>
 		<a href="<%=request.getContextPath()%>/sm/board/insert">글 등록</a>
 	</div>
-
+<div class="sm-footer">
+<h4>저작권 관련</h4>
+</div>
 </body>
 </html>

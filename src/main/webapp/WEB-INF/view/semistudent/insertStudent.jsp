@@ -5,11 +5,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.sm-header{
+background: beige;
+text-align: center;
+height: 150px;
+}
+.sm-footer{
+background: beige;
+text-align: center;
+height: 100px;
+}
+</style>
 </head>
 <body>
-<h2>
-		<a href="<%=request.getContextPath()%>/sm/home">홈으로 </a>
-	</h2>
+<div class="sm-header">
+<h2><a href="<%=request.getContextPath()%>/sm/home">염호준 수학</a></h2>
+</div>
 <h2>학생등록</h2>
 	<div class="container">
 		<form action="<%=request.getContextPath()%>/sm/student/insert.do" method="post">
@@ -56,5 +68,8 @@
 
 
 	</div>
+		<div class="sm-footer">
+<h4>저작권 관련</h4>
+</div>
 </body>
 </html>

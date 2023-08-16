@@ -10,51 +10,46 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kh.yhjsemi.member.model.vo.SemiMemberVo;
-import kh.yhjsemi.student.model.vo.SemiStudentVo;
 import kh.yhjsemi.student.service.SemiStudentService;
-import kh.yhjsemi.teacher.service.SemiTeacherService;
 import kh.yhjsemi.week.model.vo.SemiWeekVo;
 
 /**
- * Servlet implementation class SemiStudentGetController
+ * Servlet implementation class SemiWeekGetController
  */
-@WebServlet("/sm/teacher/get")
+@WebServlet("/sm/student/get")
 public class SemiStudentGetController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SemiStudentGetController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public SemiStudentGetController() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		SemiMemberVo loginq = (SemiMemberVo) request.getSession().getAttribute("loginVo");
-		if (loginq != null) {
-			if (loginq.getMtype().equals("A") || loginq.getMtype().equals("T")) {
-				String mid = request.getParameter("mid");
-				SemiTeacherService dao = new SemiTeacherService();
-				List<SemiStudentVo> vo = dao.selectOneTeacher(mid);
-				request.setAttribute("mid", vo);
-				request.getRequestDispatcher("/WEB-INF/view/semiteacher/teacherget.jsp").forward(request, response);
-			} else {
-				System.out.println("권한이 없습니다");
-				response.sendRedirect(request.getContextPath() + "/sm/error");			}
-		} else {
-			response.sendRedirect(request.getContextPath() + "/main");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		SemiMemberVo loginq = (SemiMemberVo)request.getSession().getAttribute("loginVo");
+		String msg = (String) request.getSession().getAttribute("successFailMsg");
+		if(msg != null) {
+			request.getSession().removeAttribute("successFailMsg");
+			request.setAttribute("msg", msg);
 		}
-
-		/**
-		 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-		 *      response)
-		 */
+		if(loginq !=null) {
+		String mid2 = request.getParameter("mid2");
+		SemiStudentService dao= new SemiStudentService();
+		List<SemiWeekVo> vo = dao.selectOneStudent(mid2);
+	request.setAttribute("mid2", vo);
+		request.getRequestDispatcher("/WEB-INF/view/semistudent/studentget.jsp").forward(request, response);
+	}else {
+		response.sendRedirect(request.getContextPath() + "/sm/error");
+	
 	}
+	}
+
+
 
 }

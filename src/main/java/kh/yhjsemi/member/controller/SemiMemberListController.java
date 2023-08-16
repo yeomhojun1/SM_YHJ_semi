@@ -35,8 +35,11 @@ public class SemiMemberListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset= UTF-8");
+		String msg = (String) request.getSession().getAttribute("successFailMsg");
+		if(msg != null) {
+			request.setAttribute("msg", msg);
+			request.getSession().removeAttribute("successFailMsg");
+		}
 		SemiMemberVo loginq = (SemiMemberVo) request.getSession().getAttribute("loginVo");
 		if (loginq != null) {
 			if (loginq.getMtype().equals("A")) {
@@ -45,12 +48,12 @@ public class SemiMemberListController extends HttpServlet {
 				request.setAttribute("semimemberlist", result);
 				request.getRequestDispatcher("/WEB-INF/view/semimember/member.jsp").forward(request, response);
 			} else {
-				System.out.println("권한이 없습니다");
 				response.sendRedirect(request.getContextPath() + "/sm/error");
 				}
 		} else {
 			response.sendRedirect(request.getContextPath() + "/main");
 		}
+		request.getSession().removeAttribute("msg");
 	}
 
 	/**

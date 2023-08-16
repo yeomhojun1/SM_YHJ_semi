@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static kh.yhjsemi.common.jdbc.JdbcTemplate.*;
+
+import kh.yhjsemi.student.model.vo.SemiStudentVo;
 import kh.yhjsemi.week.model.vo.SemiWeekVo;
 
 public class SemiWeekDao {
@@ -97,5 +99,39 @@ public class SemiWeekDao {
 		}
 		return result;
 	}
-
+//	private int monthNo;
+//	private String tcid;
+//	private String stid;
+//	private String expect;
+//	private String study;
+//	private String stComment;
+//	private String acheive;
+//	private int weekScore;
+//	private String studentName;
+	public int insertWeek(Connection conn, SemiWeekVo vo) {
+		System.out.println("[insertWeek 시작]");
+		int result=0;
+		String sql= "insert into st_week (monthNo,tcid,stid,expect,study"
+				+ ",stComment,acheive,weekScore,studentName) values(?,?,?,?,?,?,?,?,?)";
+		PreparedStatement pstmt= null;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, vo.getMonthNo());
+			pstmt.setString(2, vo.getTcid());
+			pstmt.setString(3, vo.getStid());
+			pstmt.setString(4, vo.getExpect());
+			pstmt.setString(5, vo.getStudy());
+			pstmt.setString(6, vo.getStComment());
+			pstmt.setString(7, vo.getAcheive());
+			pstmt.setInt(8, vo.getWeekScore());
+			pstmt.setString(9, vo.getStudentName());
+			result= pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(conn);
+		}System.out.println("[insertWeek]"+result);
+		return result;
+	}
 }	

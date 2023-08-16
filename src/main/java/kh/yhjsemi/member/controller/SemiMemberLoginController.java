@@ -36,8 +36,6 @@ public class SemiMemberLoginController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset= UTF-8");
 		String sendUrl = request.getContextPath();
 
 		String meid = request.getParameter("meid");
@@ -68,8 +66,10 @@ public class SemiMemberLoginController extends HttpServlet {
 			request.getSession().setAttribute("successFailMsg", "로그인 실패하였습니다.\n 아이디와 패스워드를 다시 확인하고 로그인 시도해주세요.");
 			sendUrl += "/main";
 		}
-		request. getSession().setAttribute("logoutmsg", "로그아웃 됐습니다");
-		String msg = (String) request.getSession().getAttribute("successFailMsg");
+	
+		//request. getSession().setAttribute("logoutmsg", "로그아웃 됐습니다");
+		//String msg = (String) request.getSession().getAttribute("successFailMsg");
 		response.sendRedirect(sendUrl);
+	
 	}
 }

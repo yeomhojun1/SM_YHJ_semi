@@ -29,6 +29,10 @@ public class SemiWeekService {
 		close(conn);
 		return result;
 	}
-
-		
+	public int insertWeek( SemiWeekVo vo) {
+		Connection conn = JdbcTemplate.getConnection();
+		int result = dao.insertWeek(conn,vo);
+		close(conn);
+		return result;
+	}
 }

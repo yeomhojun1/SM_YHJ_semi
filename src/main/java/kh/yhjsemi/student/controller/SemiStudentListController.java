@@ -36,8 +36,7 @@ public class SemiStudentListController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// String searchword= request.getParameter("searchword");
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset= UTF-8");
+		request.getSession().removeAttribute("msg");
 		SemiMemberVo loginq = (SemiMemberVo) request.getSession().getAttribute("loginVo");
 		if (loginq != null) {
 			if (loginq.getMtype().equals("T") || loginq.getMtype().equals("A")) {

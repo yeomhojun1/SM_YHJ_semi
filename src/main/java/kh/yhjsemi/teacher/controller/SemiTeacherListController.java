@@ -34,6 +34,7 @@ public class SemiTeacherListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.getSession().removeAttribute("msg");
 		SemiMemberVo loginq = (SemiMemberVo) request.getSession().getAttribute("loginVo");
 		if (loginq != null) {
 			if (loginq.getMtype().equals("A") || loginq.getMtype().equals("T")) {
@@ -44,7 +45,6 @@ public class SemiTeacherListController extends HttpServlet {
 				request.setAttribute("semiteacherlist", result);
 				request.getRequestDispatcher("/WEB-INF/view/semiteacher/teacher.jsp").forward(request, response);
 			} else {
-				System.out.println("권한이 없습니다");
 				response.sendRedirect(request.getContextPath() + "/sm/error");			}
 		} else {
 			response.sendRedirect(request.getContextPath() + "/main");

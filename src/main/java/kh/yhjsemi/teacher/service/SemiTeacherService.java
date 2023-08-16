@@ -33,4 +33,10 @@ public class SemiTeacherService {
 		close(conn);
 		return result;
 	}
+	public int insertTeacher(SemiTeacherVo vo) {
+		Connection conn = getConnection();
+		int result = dao.insertTeacher(conn,vo);
+		close(conn);
+		return result;
+	}
 }

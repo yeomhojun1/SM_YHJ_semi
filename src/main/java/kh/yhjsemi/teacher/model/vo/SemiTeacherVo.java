@@ -5,7 +5,7 @@ import java.sql.Date;
 public class SemiTeacherVo {
 	private String mid;
 	private String teacherName;
-	private Date entranceDate;
+	private String entranceDate;
 	private String acaNo;
 	@Override
 	public String toString() {
@@ -24,10 +24,10 @@ public class SemiTeacherVo {
 	public void setTeacherName(String teacherName) {
 		this.teacherName = teacherName;
 	}
-	public Date getEntranceDate() {
+	public String getEntranceDate() {
 		return entranceDate;
 	}
-	public void setEntranceDate(Date entranceDate) {
+	public void setEntranceDate(String entranceDate) {
 		this.entranceDate = entranceDate;
 	}
 	public String getAcaNo() {
@@ -36,7 +36,7 @@ public class SemiTeacherVo {
 	public void setAcaNo(String acaNo) {
 		this.acaNo = acaNo;
 	}
-	public SemiTeacherVo(String mid, String teacherName, Date entranceDate, String acaNo) {
+	public SemiTeacherVo(String mid, String teacherName, String entranceDate, String acaNo) {
 		super();
 		this.mid = mid;
 		this.teacherName = teacherName;
