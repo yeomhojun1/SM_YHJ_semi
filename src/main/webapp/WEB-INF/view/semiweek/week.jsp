@@ -2,11 +2,24 @@
 <%@page import="kh.yhjsemi.week.model.vo.SemiWeekVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.sm-header{
+background: beige;
+text-align: center;
+height: 150px;
+}
+.sm-footer{
+background: beige;
+text-align: center;
+height: 100px;
+}
+</style>
 </head>
 <body>
 <script>
@@ -17,9 +30,9 @@
 		}
 	}
 </script>
-<h2>
-		<a href="<%=request.getContextPath()%>/sm/home">홈으로 </a>
-	</h2>
+<div class="sm-header">
+<h2><a href="<%=request.getContextPath()%>/sm/home">염호준 수학</a></h2>
+</div>
 	<c:choose>
 		<c:when test="${not empty loginVo }">
 			<h2>${loginVo.mname }님반갑습니다</h2>
@@ -72,5 +85,8 @@
 
 
 	</table>
+		<div class="sm-footer">
+<h4>저작권 관련</h4>
+</div>
 </body>
 </html>

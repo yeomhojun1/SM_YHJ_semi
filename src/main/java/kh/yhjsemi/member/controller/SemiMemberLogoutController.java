@@ -27,6 +27,7 @@ public class SemiMemberLogoutController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().removeAttribute("loginVo");
+		request.getSession().removeAttribute("successFailMsg");
 		request. getSession().setAttribute("logoutmsg", "로그아웃 됐습니다");
 		response.sendRedirect(request.getContextPath()+"/main");
 	}

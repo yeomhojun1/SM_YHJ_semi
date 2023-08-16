@@ -34,17 +34,15 @@ public class SemiBoardDeleteController extends HttpServlet {
 				} catch (Exception e) {
 				}
 				if (result < 1) {
-					request.getSession().setAttribute("msg", "글 삭제 실패!");
-					System.out.println(request.getSession().getAttribute("msg"));
+					request.getSession().setAttribute("bmsg", "글 삭제 실패!");
+					System.out.println(request.getSession().getAttribute("bmsg"));
 				} else {
-					request.getSession().setAttribute("msg", "글 삭제 되었습니다");
-					System.out.println(request.getSession().getAttribute("msg"));
+					request.getSession().setAttribute("bmsg", "글 삭제 되었습니다");
+					System.out.println(request.getSession().getAttribute("bmsg"));
 				}
 				response.sendRedirect(request.getContextPath() + "/sm/board/list");
 			} else {
-				request.getSession().setAttribute("msg", "권한이 없습니다");
-				System.out.println(request.getSession().getAttribute("msg"));
-				response.sendRedirect(request.getContextPath() + "/sm/board/list");
+				response.sendRedirect(request.getContextPath() + "/sm/error");
 			}
 		} else {
 			response.sendRedirect(request.getContextPath() + "/main");

@@ -39,18 +39,22 @@ public class SemiStudentSearchController extends HttpServlet {
 		if (loginq != null) {
 			if (loginq.getMtype().equals("T") || loginq.getMtype().equals("A")) {
 				String searchword = request.getParameter("searchword");
-					if(searchword !=null|| searchword=="") {
-				SemiStudentService dao = new SemiStudentService();
-				List<SemiStudentVo> vo = dao.selectsearchStudent(searchword);
-				System.out.println(vo);
-				request.setAttribute("searchword", vo);
-				request.setAttribute("s", searchword);
-				request.getRequestDispatcher("/WEB-INF/view/semistudent/studentsearch.jsp").forward(request, response);
-					}else {
-						response.sendRedirect(request.getContextPath() + "/sm/errorsearch");	
+				if (searchword == null || searchword == "") {
+					response.sendRedirect(request.getContextPath() + "/sm/errorsearch");
+				} else {
+					SemiStudentService dao = new SemiStudentService();
+					List<SemiStudentVo> vo = dao.selectsearchStudent(searchword);
+					if (vo == null) {
+						response.sendRedirect(request.getContextPath() + "/sm/errorsearch");
+					} else {
+						request.setAttribute("searchword", vo);
+						request.setAttribute("s", searchword);
+						request.getRequestDispatcher("/WEB-INF/view/semistudent/studentsearch.jsp").forward(request,
+								response);
 					}
-			}else {
-				response.sendRedirect(request.getContextPath() + "/sm/error");	
+				}
+			} else {
+				response.sendRedirect(request.getContextPath() + "/sm/error");
 			}
 		}
 	}

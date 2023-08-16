@@ -6,6 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>멤버 리스트</title>
+<style>
+.sm-header{
+background: beige;
+text-align: center;
+height: 150px;
+}
+.sm-footer{
+background: beige;
+text-align: center;
+height: 100px;
+}
+</style>
 </head>
 <body>
 <script>
@@ -15,10 +27,14 @@
 		alert(msg);
 		}
 	}
+	var msg = '${msg}';
+	if(msg){
+		alert(msg);
+	}
 </script>
-<h2>
-		<a href="<%=request.getContextPath()%>/sm/home">홈으로 </a>
-	</h2>
+<div class="sm-header">
+<h2><a href="<%=request.getContextPath()%>/sm/home">염호준 수학</a></h2>
+</div>
 <c:choose>
 					<c:when test="${not empty loginVo }">
 					<h2>${loginVo.mname }님 반갑습니다</h2>
@@ -54,6 +70,9 @@
 	</div>
 	<div>
 		<a href="<%=request.getContextPath()%>/sm/member/insert">멤버등록</a>
+	</div>
+		<div>
+		<a href="<%=request.getContextPath()%>/sm/teacher/insert">선생님 등록</a>
 	</div>
 
 	<table border="1">
@@ -95,5 +114,8 @@
 			</tr>
 		</c:forEach>
 	</table>
+		<div class="sm-footer">
+<h4>저작권 관련</h4>
+</div>
 </body>
 </html>

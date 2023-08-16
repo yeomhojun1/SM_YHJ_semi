@@ -6,6 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>${s } 검색결과</title>
+<style>
+.sm-header{
+background: beige;
+text-align: center;
+height: 150px;
+}
+.sm-footer{
+background: beige;
+text-align: center;
+height: 100px;
+}
+</style>
 </head>
 <body>
 <script>
@@ -16,9 +28,9 @@
 		}
 	}
 </script>
-<h2>
-		<a href="<%=request.getContextPath()%>/sm/home">홈으로 </a>
-	</h2>
+<div class="sm-header">
+<h2><a href="<%=request.getContextPath()%>/sm/home">염호준 수학</a></h2>
+</div>
 <c:choose>
 					<c:when test="${not empty loginVo }">
 					<h2>${loginVo.mname }님 반갑습니다</h2>
@@ -80,5 +92,8 @@
 		</tr>
 		</c:forEach>
 		</table>
+		<div class="sm-footer">
+<h4>저작권 관련</h4>
+</div>
 </body>
 </html>

@@ -34,7 +34,7 @@ public class SemiTeacherDao {
 				SemiTeacherVo vo = new SemiTeacherVo();
 				vo.setMid(rs.getString("MID"));
 				vo.setTeacherName(rs.getString("teacher_NAME"));
-				vo.setEntranceDate(rs.getDate("entrance_date"));
+				vo.setEntranceDate(rs.getString("entrance_date"));
 				vo.setAcaNo(rs.getString("aca_no"));
 				result.add(vo);
 			}while(rs.next() == true);
@@ -66,7 +66,7 @@ public class SemiTeacherDao {
 					SemiTeacherVo vo = new SemiTeacherVo();
 				vo.setMid(rs.getString("MID"));
 				vo.setTeacherName(rs.getString("teacher_NAME"));
-				vo.setEntranceDate(rs.getDate("entrance_date"));
+				vo.setEntranceDate(rs.getString("entrance_date"));
 				vo.setAcaNo(rs.getString("aca_no"));
 			}while(rs.next() == true);
 			}
@@ -109,6 +109,27 @@ public class SemiTeacherDao {
 			e.printStackTrace();
 		}
 		System.out.println("[selectOneTeacher"+result);
+		return result;
+	}
+	public int insertTeacher(Connection conn, SemiTeacherVo vo) {
+		System.out.println("[insertTeacher 시작]");
+		int result=0;
+		String sql= "insert into Teacher (mid,teacher_Name,entrance_Date,aca_No)"
+				+ " values(?,?,to_date(?,'yy-mm-dd'),?)";
+		PreparedStatement pstmt= null;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getMid());
+			pstmt.setString(2, vo.getTeacherName());
+			pstmt.setString(3, vo.getEntranceDate());
+			pstmt.setString(4, vo.getAcaNo());
+			result= pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(conn);
+		}System.out.println("[insertTeacher]"+result);
 		return result;
 	}
 }

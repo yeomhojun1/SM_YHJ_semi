@@ -13,10 +13,10 @@ import kh.yhjsemi.board.model.vo.SemiBoardVo;
 import kh.yhjsemi.board.service.SemiBoardService;
 
 @WebServlet("/sm/board/bcontent")
-public class SemiBoardGetController extends HttpServlet {
+public class SemiBoardBcontentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public SemiBoardGetController() {
+	public SemiBoardBcontentController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -34,5 +34,4 @@ public class SemiBoardGetController extends HttpServlet {
 		request.setAttribute("bcontent", vo);
 		request.getRequestDispatcher("/WEB-INF/view/semiboard/bcontent.jsp").forward(request, response);
 	}
-
 }

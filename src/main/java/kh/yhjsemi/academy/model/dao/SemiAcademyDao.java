@@ -54,7 +54,7 @@ public class SemiAcademyDao {
 				SemiTeacherVo vo = new SemiTeacherVo(
 						rs.getString("mid"),
 						rs.getString("teacher_name"),
-						rs.getDate("entrance_date"),
+						rs.getString("entrance_date"),
 						rs.getString("aca_no")
 						);
 				result.add(vo);

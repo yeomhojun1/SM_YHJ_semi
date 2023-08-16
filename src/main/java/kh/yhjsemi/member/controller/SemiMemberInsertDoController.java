@@ -41,16 +41,15 @@ public class SemiMemberInsertDoController extends HttpServlet {
 				SemiMemberVo loginVo = (SemiMemberVo) request.getSession().getAttribute("loginVo");
 				System.out.println(loginVo);
 				if (result < 1) {
-					request.getSession().setAttribute("msg", "멤버 등록 실패!");
+					request.getSession().setAttribute("memmsg", "멤버 등록 실패!");
 					System.out.println(request.getSession().getAttribute("msg"));
 				} else {
-					request.getSession().setAttribute("msg", "멤버 등록 되었습니다");
+					request.getSession().setAttribute("memmsg", "멤버 등록 되었습니다");
 					System.out.println(request.getSession().getAttribute("msg"));
 
 					response.sendRedirect(request.getContextPath() + "/sm/member/list");
 				}
 			} else {
-				System.out.println("권한이 없습니다");
 				response.sendRedirect(request.getContextPath() + "/sm/error");
 			}
 		}else {
