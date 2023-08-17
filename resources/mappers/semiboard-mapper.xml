@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="semiBoardMapper1">
+   <resultMap type="SemiBoardVo" id="SemiBoardRM1">
+   <id property="bno" column="bno"/>
+   <result property="bwriter" column="bwriter"/>
+   <result property="bwriterNo" column="bwriter_No"/>
+   <result property="btitle" column="btitle"/>
+   <result property="bcontent" column="bcontent"/>
+   </resultMap>
+		<select id="selectListboard" resultType="SemiBoardVo" >
+		SELECT * FROM bboard
+		</select>
+		<select id="selectsearchboard" resultType="SemiBoardVo" parameterType="string">
+		SELECT bno,bwriter,btitle FROM bboard where btitle like #{searchword} or bwriter like #{searchword}
+		</select>
+		<select id="selectOneBoard" resultType="SemiBoardVo" parameterType="_int">
+		select bno,bwriter,btitle,bcontent FROM bboard where bno=#{bno}
+		</select>
+		<insert id="insertboard" parameterType="SemiBoardVo">
+		INSERT INTO BBOARD (BWRITER,BWRITER_NO,BTITLE,BCONTENT) VALUES ( {#vo.bwriter}, #{vo.bwriterNo}, {#vo.btitle},#{vo.bcontent})
+		</insert>
+   		<delete id="deleteboard" parameterType="_int">
+   		delete from bboard where bno = #{bno}
+   		</delete>
+   </mapper>
+   

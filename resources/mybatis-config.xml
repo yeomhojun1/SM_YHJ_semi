@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC " -//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	<typeAliases>
+		<typeAlias type="kh.yhjsemi.student.model.vo.SemiStudentVo" alias="SemiStudentVo"/>
+		<typeAlias type="kh.yhjsemi.teacher.model.vo.SemiTeacherVo" alias="SemiTeacherVo"/>
+		<typeAlias type="kh.yhjsemi.week.model.vo.SemiWeekVo" alias="SemiWeekVo"/>
+		<typeAlias type="kh.yhjsemi.member.model.vo.SemiMemberVo" alias="SemiMemberVo"/>
+		<typeAlias type="kh.yhjsemi.board.model.vo.SemiBoardVo" alias="SemiBoardVo"/>
+		<typeAlias type="kh.yhjsemi.academy.model.vo.SemiAcademyVo" alias="SemiAcademyVo"/>
+	</typeAliases>
+	<environments default="yhj">
+		<environment id="yhj">
+			<transactionManager type="JDBC"></transactionManager>
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+				<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
+				<property name="username" value="yhj"/>
+				<property name="password" value="yhj"/>
+			</dataSource>
+		</environment>
+		
+	</environments>
+	<mappers>
+		<mapper resource="/mappers/semistudent-mapper.xml"/>
+		<mapper resource="/mappers/semiteacher-mapper.xml"/>
+		<mapper resource="/mappers/semimember-mapper.xml"/>
+		<mapper resource="/mappers/semiweek-mapper.xml"/>
+		<mapper resource="/mappers/semiboard-mapper.xml"/>
+		<mapper resource="/mappers/semiacademy-mapper.xml"/>
+	</mappers>
+
+</configuration>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="semiMemberMapper1">
+<resultMap type="SemiMemberVo" id="SemiMemberRM1">
+   <id property="mid" column="mid"/>
+   <result property="mpwd" column="mpwd"/>
+   <result property="mtype" column="mtype"/>
+   <result property="mname" column="mname"/>
+   </resultMap>
+		<select id="selectListMember" resultType="SemiMemberVo" >
+		select mid,  decode(mtype,'A','학원','S','학생','T','선생님') AS mtype, 
+		decode(mtype,'S', (select  student_name from ACA_STUDENT s where s.mid2=m.mid),
+		 'T', (select  teacher_name t from teacher t where t.mid=m.mid),
+		 'A',(select  aca_name from academy a where a.aca_no=m.mid )) mname from aca_member m order by mid
+		</select>
+		
+		<select id="login" resultType="SemiMemberVo" parameterType="SemiMemberVo">
+		select m.*,  decode(mtype,'S', (select  student_name from ACA_STUDENT where mid2=?), 'T', (select  teacher_name from teacher where mid=?),
+		 'A',(select  aca_name from academy where aca_no=?)) mname from aca_member m where mid=#{vo.mid} and mpwd=#{vo.mpwd} </select>
+		<insert id="insertMember" parameterType="SemiMemberVo">
+		insert into aca_member (mid,mpwd,mtype) values(#{vo.mid},#{vo.mpwd},#{vo.mtype})
+		</insert>
+   		<delete id="deleteMember" parameterType="string">
+   		delete from aca_member where mid = #{mid} 
+   		</delete>
+</mapper>
