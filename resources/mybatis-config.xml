@@ -28,10 +28,9 @@
 	<mappers>
 		<mapper resource="/mappers/semistudent-mapper.xml"/>
 		<mapper resource="/mappers/semiteacher-mapper.xml"/>
-		<mapper resource="/mappers/semimember-mapper.xml"/>
 		<mapper resource="/mappers/semiweek-mapper.xml"/>
+		<mapper resource="/mappers/semiacademy-mapper.xml"/> 
+		<mapper resource="/mappers/semimember-mapper.xml"/>
 		<mapper resource="/mappers/semiboard-mapper.xml"/>
-		<mapper resource="/mappers/semiacademy-mapper.xml"/>
 	</mappers>
-
 </configuration>

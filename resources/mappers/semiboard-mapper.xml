@@ -15,13 +15,12 @@
 		SELECT bno,bwriter,btitle FROM bboard where btitle like #{searchword} or bwriter like #{searchword}
 		</select>
 		<select id="selectOneBoard" resultType="SemiBoardVo" parameterType="_int">
-		select bno,bwriter,btitle,bcontent FROM bboard where bno=#{bno}
+		select * FROM bboard where bno=#{bno}
 		</select>
 		<insert id="insertboard" parameterType="SemiBoardVo">
-		INSERT INTO BBOARD (BWRITER,BWRITER_NO,BTITLE,BCONTENT) VALUES ( {#vo.bwriter}, #{vo.bwriterNo}, {#vo.btitle},#{vo.bcontent})
+		INSERT INTO BBOARD (bno,BWRITER,BWRITER_NO,BTITLE,BCONTENT) VALUES (default, #{bwriter}, #{bwriterNo}, #{btitle},#{bcontent})
 		</insert>
    		<delete id="deleteboard" parameterType="_int">
    		delete from bboard where bno = #{bno}
    		</delete>
    </mapper>
-   

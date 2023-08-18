@@ -36,7 +36,7 @@ public class SemiStudentService {
 	}
 	public int insertStudent( SemiStudentVo vo) {
 		int result =0;
-		SqlSession session = MyBatisTemplate.getSqlSession(false);
+		SqlSession session = MyBatisTemplate.getSqlSession(true);
 		result= dao.insertStudent(session, vo);
 		if(result > 0) {
 			session.commit();

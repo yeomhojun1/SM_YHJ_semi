@@ -4,8 +4,11 @@ package kh.yhjsemi.member.service;
 import java.sql.Connection;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+
 import static kh.yhjsemi.common.jdbc.JdbcTemplate.*;
 
+import kh.test.jdbckh.common.jdbc.MyBatisTemplate;
 import kh.yhjsemi.member.model.dao.SemiMemberDao;
 import kh.yhjsemi.member.model.vo.SemiMemberVo;
 
@@ -38,9 +41,9 @@ public class SemiMemberService {
 //	}
 	public SemiMemberVo login(SemiMemberVo vo) {
 		SemiMemberVo result = null;
-		Connection conn = getConnection();
-		result = dao.login(conn, vo);
-		close(conn);
+		SqlSession session = MyBatisTemplate.getSqlSession(true);
+		result = dao.login(session, vo);
+		session.close();
 		return result;
 	}
 	public int insertMember(SemiMemberVo vo) {

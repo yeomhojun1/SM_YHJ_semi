@@ -14,21 +14,20 @@
 		<select id="selectListStudent" resultType="SemiStudentVo" >
 		SELECT * FROM ACA_STUDENT
 		</select>
-		<select id="selectsearchStudent" resultType="SemiStudentVo" parameterType="string">
+		<select id="selectsearchStudent" resultMap="SemiStudentRM1" parameterType="string">
 		SELECT * FROM ACA_STUDENT where student_name like #{searchword} 
 		</select>
-		<select id="selectOneStudent" resultType="SemiStudentVo" parameterType="string">
+		<select id="selectOneStudent" resultType="SemiWeekVo" parameterType="string">
 		select (select student_name from aca_student a where mid2=#{mid2}) student_name, monthNo,Tc_id,St_id,Expect,Study,St_Comment,Acheive,Week_Score from st_week s where st_id = #{mid2}
 		</select>
 		<insert id="insertStudent" parameterType="SemiStudentVo">
 		insert into aca_student (mid2,student_Name,exam_Score,birthday,enter_Date, important
-		,mid,tele) values(#{vo.mid2},#{vo.studentName},#{vo.examScore}
-		,to_date(#{vo.birthday},'yy-mm-dd'),to_date(#{vo.enterDate},'yy-mm-dd')
-		,#{vo.important},#{vo.mid},#{vo.tele})
+		,mid,tele) values(#{mid2},#{studentName},#{examScore}
+		,to_date(#{birthday},'yy-mm-dd'),to_date(#{enterDate},'yy-mm-dd')
+		,#{important},#{mid},#{tele})
 		</insert>
    		<delete id="deleteStudent" parameterType="string">
    		delete from aca_student where mid2 = #{mid2} 
    		</delete>
    </mapper>
 
-   

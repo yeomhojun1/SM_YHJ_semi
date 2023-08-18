@@ -15,8 +15,8 @@
 		</select>
 		
 		<select id="login" resultType="SemiMemberVo" parameterType="SemiMemberVo">
-		select m.*,  decode(mtype,'S', (select  student_name from ACA_STUDENT where mid2=?), 'T', (select  teacher_name from teacher where mid=?),
-		 'A',(select  aca_name from academy where aca_no=?)) mname from aca_member m where mid=#{vo.mid} and mpwd=#{vo.mpwd} </select>
+		select m.*,  decode(mtype,'S', (select  student_name from ACA_STUDENT where mid2=#{mid}), 'T', (select  teacher_name from teacher where mid=#{mid}),
+		 'A',(select  aca_name from academy where aca_no=#{mid})) mname from aca_member m where mid=#{mid} and mpwd=#{mpwd} </select>
 		<insert id="insertMember" parameterType="SemiMemberVo">
 		insert into aca_member (mid,mpwd,mtype) values(#{vo.mid},#{vo.mpwd},#{vo.mtype})
 		</insert>

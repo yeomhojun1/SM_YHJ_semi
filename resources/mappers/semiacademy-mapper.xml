@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
-  <cache-ref namespace=""/>
+<mapper namespace="semiAcademyMapper1">
+	<resultMap type="SemiAcademyVo" id="SemiAcademyRM1">
+		<id property="acaNo" column="aca_No" />
+		<result property="acaAddress" column="aca_Address" />
+		<result property="acaName" column="aca_Name" />
+		<result property="acaPhone" column="aca_Phone" />
+	</resultMap>
+	<select id="selectListAcademy" resultMap="SemiAcademyRM1">
+		select * from academy
+	</select>
+	<select id="selectOneAcademy" resultMap="SemiAcademyRM1">
+		select mid, teacher_name, entrance_date,aca_no from teacher where
+		aca_no=#{acaNo}
+	</select>
 </mapper>

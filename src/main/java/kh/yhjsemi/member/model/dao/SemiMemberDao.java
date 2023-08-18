@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+
 import static kh.yhjsemi.common.jdbc.JdbcTemplate.*;
 import kh.yhjsemi.member.model.vo.SemiMemberVo;
 
@@ -56,36 +58,36 @@ public class SemiMemberDao {
 		return result;
 	}
 
-	public SemiMemberVo login(Connection conn, SemiMemberVo vo ) {
+	public SemiMemberVo login(SqlSession sesson, SemiMemberVo vo ) {
 		System.out.println("[login 멤버vo 시작]");
-		String query = " select m.*,  decode(mtype,'S', (select  student_name from ACA_STUDENT where mid2=?),"
-				+ " 'T', (select  teacher_name from teacher where mid=?),"
-				+ " 'A',(select  aca_name from academy where aca_no=?)) mname "
-				+ " from aca_member m "
-				+ " where mid=? and mpwd=? ";
-
-		PreparedStatement pstmt = null;
-		SemiMemberVo result =null;
-		ResultSet rs= null;
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, vo.getMid());
-			pstmt.setString(2, vo.getMid());
-			pstmt.setString(3, vo.getMid());
-			pstmt.setString(4, vo.getMid());
-			pstmt.setString(5, vo.getMpwd());
-			rs= pstmt.executeQuery();
-			if(rs.next()) {
-				result= new SemiMemberVo();
-				result.setMid(rs.getString("mid"));
-				result.setMtype(rs.getString("mtype"));
-				result.setMname(rs.getString("mname"));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
+//		String query = " select m.*,  decode(mtype,'S', (select  student_name from ACA_STUDENT where mid2=?),"
+//				+ " 'T', (select  teacher_name from teacher where mid=?),"
+//				+ " 'A',(select  aca_name from academy where aca_no=?)) mname "
+//				+ " from aca_member m "
+//				+ " where mid=? and mpwd=? ";
+//
+//		PreparedStatement pstmt = null;
+		SemiMemberVo result =sesson.selectOne("semiMemberMapper1.login",vo);
+//		ResultSet rs= null;
+//		try {
+//			pstmt = conn.prepareStatement(query);
+//			pstmt.setString(1, vo.getMid());
+//			pstmt.setString(2, vo.getMid());
+//			pstmt.setString(3, vo.getMid());
+//			pstmt.setString(4, vo.getMid());
+//			pstmt.setString(5, vo.getMpwd());
+//			rs= pstmt.executeQuery();
+//			if(rs.next()) {
+//				result= new SemiMemberVo();
+//				result.setMid(rs.getString("mid"));
+//				result.setMtype(rs.getString("mtype"));
+//				result.setMname(rs.getString("mname"));
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(pstmt);
+//		}
 		System.out.println("[login]"+result);
 		return result;
 	}

@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
-  <cache-ref namespace=""/>
-</mapper>
+<mapper namespace="semiWeekMapper1">
+   <resultMap type="SemiWeekVo" id="SemiWeekRM1">
+   <id property="mid2" column="mid2"/>
+   <result property="WeekName" column="Week_Name"/>
+   <result property="examScore" column="exam_Score"/>
+   <result property="birthday" column="birthday"/>
+   <result property="enterDate" column="enter_Date"/>
+   <result property="important" column="important"/>
+   <result property="mid" column="mid"/>
+   <result property="tele" column="tele"/>
+   </resultMap>
+		<select id="selectListWeek" resultType="SemiWeekVo" >
+		SELECT * FROM ACA_Week
+		</select>
+		<select id="getTotalCount" resultType="_int" >
+		SELECT * FROM ACA_Week where Week_name like #{searchword} 
+		</select>
+		<insert id="insertWeek" parameterType="SemiWeekVo">
+		insert into st_week (monthNo,tcid,stid,expect,study,stComment,acheive,weekScore,studentName) values(#{monthNo},#{tcid},#{stid},#{expect},#{study},#{stComment},#{acheive},#{weekScore},#{studentName})
+		</insert>
+   </mapper>
+

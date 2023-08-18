@@ -1,38 +1,38 @@
 package kh.yhjsemi.week.service;
 
-import static kh.yhjsemi.common.jdbc.JdbcTemplate.close;
 
-import java.sql.Connection;
 import java.util.List;
 
-import kh.yhjsemi.common.jdbc.JdbcTemplate;
+import org.apache.ibatis.session.SqlSession;
+
+import kh.test.jdbckh.common.jdbc.MyBatisTemplate;
 import kh.yhjsemi.week.model.dao.SemiWeekDao;
 import kh.yhjsemi.week.model.vo.SemiWeekVo;
 
 public class SemiWeekService {
 	private SemiWeekDao dao = new SemiWeekDao();
 	public List<SemiWeekVo> selectListWeek(){
-		Connection conn = JdbcTemplate.getConnection();
-		List<SemiWeekVo> result = dao.selectListWeek(conn);
-		close(conn);
+		SqlSession session = MyBatisTemplate.getSqlSession(true);
+		List<SemiWeekVo> result = dao.selectListWeek(session);
+		session.close();
 		return result;
 	}
-	public List<SemiWeekVo> selectListWeek(String searchword){
-		Connection conn = JdbcTemplate.getConnection();
-		List<SemiWeekVo> result = dao.selectListWeek(conn, searchword);
-		close(conn);
-		return result;
-	}
-	public int getTotalCount( ) {
-		Connection conn = JdbcTemplate.getConnection();
-		int result = dao.getTotalCount(conn);
-		close(conn);
-		return result;
-	}
+//	public List<SemiWeekVo> selectListWeek(String searchword){
+//		SqlSession session = MyBatisTemplate.getSqlSession(true);
+//		List<SemiWeekVo> result = dao.selectListWeek(session, searchword);
+//		session.close();
+//		return result;
+//	}
+//	public int getTotalCount( ) {
+//		SqlSession session = MyBatisTemplate.getSqlSession(true);
+//		int result = dao.getTotalCount(session);
+//		session.close();
+//		return result;
+//	}
 	public int insertWeek( SemiWeekVo vo) {
-		Connection conn = JdbcTemplate.getConnection();
-		int result = dao.insertWeek(conn,vo);
-		close(conn);
+		SqlSession session = MyBatisTemplate.getSqlSession(true);
+		int result = dao.insertWeek(session,vo);
+		session.close();
 		return result;
 	}
 }
