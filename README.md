@@ -1,4 +1,4 @@
-# 💪 Daily Muscle Life(DML)
+# 🎓 Smanager- 학생 관리 프로그램
 
 ## 📖 Contents
 1. 프로젝트 소개
