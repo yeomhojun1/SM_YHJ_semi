@@ -53,5 +53,4 @@ public class SemiStudentService {
 		session.close();
 		return result;
 	}
-	
 }
